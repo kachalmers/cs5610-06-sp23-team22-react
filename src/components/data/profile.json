@@ -1,0 +1,13 @@
+{
+  "firstName": "Dana",
+  "lastName": "Scully",
+  "handle": "@dscully",
+  "profilePicture": "scully.png",
+  "bannerPicture": "xfiles_banner.png",
+  "interests": ["crime-solving", "reading", "medicine"],
+  "email": "dscully@email.com",
+  "phone": "012-345-6789",
+  "dateJoined": "9/1993",
+  "followingCount": 340,
+  "followersCount": 223
+}
