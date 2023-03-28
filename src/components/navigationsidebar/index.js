@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -8,57 +9,58 @@ const NavigationSidebar = () => {
     const active = paths[1];
     const screenChoices = [
         {
-            label: 'AppName',
-            link: '/appname',
+            label: 'GidiUp',
+            link: '/gidiup',
             activePaths: [],
-            iconClassName: "bi bi-star"
+            iconClassName: "fa-solid fa-hat-cowboy"
         },
         {
             label: 'Login',
             link: '/login',
             activePaths: ['login'],
-            iconClassName: "bi bi-door-open"
+            iconClassName: "fa-solid fa-door-open"
         },
         {
             label: 'Profile',
             link: '/profile',
             activePaths: ['profile','edit-profile'],
-            iconClassName: "bi bi-person"
+            iconClassName: "fa-regular fa-user"
         },
         {
             label: 'To-do',
-            link: '/to-do',
-            activePaths: ['to-do','',undefined],
-            iconClassName: "bi bi-list-stars"
+            link: '/todos',
+            activePaths: ['todos','gidiup','',undefined],
+            iconClassName: "fa-solid fa-list"
         },
         {
             label: 'Feed',
             link: '/feed',
             activePaths: ['feed'],
-            iconClassName: "bi bi-view-list"
+            iconClassName: "fa-regular fa-newspaper"
         },
         {
             label: 'Find friends',
             link: '/find-friends',
             activePaths: ['find-friends'],
-            iconClassName: "bi bi-person-plus"
+            iconClassName: "fa-solid fa-user-plus"
         }
     ]
     return (
         <div className="list-group">
             {
-                screenChoices.map(screenChoice =>
-                    <Link to={screenChoice.link} className={`list-group-item ${screenChoice.activePaths.includes(active)?'active':''}`}>
-                        <div className="row justify-content-start align-items-center">
+                screenChoices.map((screenChoice,index) =>
+                    <Link   to={screenChoice.link}
+                            className={`list-group-item ${screenChoice.activePaths.includes(active)?'active':''}`}
+                            key={index}
+                    >
+                        <div className="row align-items-center">
                             {
-                                screenChoice.iconClassName !== '' ?
-                                <div className="col-3">
-                                    <div><i className={screenChoice.iconClassName}></i></div>
-                                </div> : ''
+                                screenChoice.iconClassName !== '' &&
+                                <div className="d-flex col col-lg-3 justify-content-center">
+                                    <FontAwesomeIcon icon={screenChoice.iconClassName}/>
+                                </div>
                             }
-                            <div className="col">
-                                <div className="d-none d-xl-block">{screenChoice.label}</div>
-                            </div>
+                            <div className="d-none d-lg-block col">{screenChoice.label}</div>
                         </div>
                     </Link>
                 )

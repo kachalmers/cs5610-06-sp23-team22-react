@@ -1,9 +1,10 @@
 import './App.css';
-import AppName from './components/appname'
+import GidiUp from './components/gidiup'
+import "./components/fontawesome-icons"
 
 function App() {
   return (
-    <AppName/>
+    <GidiUp/>
   );
 }
 

@@ -2,13 +2,17 @@ import ToDos from "../todos";
 import {useSelector} from "react-redux";
 
 
-const MyToDos = () => {
+const MyToDosScreen = () => {
     // Instead of this, we'd use a function to only show profile-owner's todos
     let todos = useSelector((state) => state.todos);
 
     return (
-        <ToDos todos={todos}/>
+        <div>
+            [create todo box]
+            <ToDos todos={todos}/>
+        </div>
+
     )
 }
 
-export default MyToDos;
+export default MyToDosScreen;

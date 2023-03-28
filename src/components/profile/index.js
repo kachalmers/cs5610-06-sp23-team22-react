@@ -60,7 +60,7 @@ const Profile = () => {
             </div>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                    <Link to="/profile/mytodos" className={`nav-link`}>To-Dos</Link>
+                    <Link to="/profile/todos" className={`nav-link`}>To-Dos</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/profile/following" className="nav-link">Following ({profile.followingCount})</Link>
@@ -69,11 +69,11 @@ const Profile = () => {
                     <Link to="/profile/followers" className="nav-link">Followers ({profile.followersCount})</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/profile/mycongrats" className="nav-link">My Congrats</Link>
+                    <Link to="/profile/congrats" className="nav-link">My Congrats</Link>
                 </li>
             </ul>
             <Routes>
-                <Route path="/mytodos" element={<MyToDos/>}/>
+                <Route path="/todos" element={<MyToDos/>}/>
             </Routes>
         </>
     )
