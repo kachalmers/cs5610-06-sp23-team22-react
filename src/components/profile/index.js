@@ -25,7 +25,7 @@ const Profile = () => {
             <img alt="banner_picture" className="w-100" src={`/images/${profile.bannerPicture}`}/>
             <div className="d-flex justify-content-between ms-2 me-2 pb-4 mb-2 position-relative">
                 <div>
-                    <img alt="profile_picture" className="rounded-circle position-absolute fixed-bottom" height={150}
+                    <img alt="profile_picture" className="rounded-circle position-absolute fixed-bottom" height={150} width={150}
                          src={`/images/${profile.profilePicture}`}/>
                 </div>
                 <div>

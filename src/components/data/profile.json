@@ -1,4 +1,6 @@
 {
+  "_id": 1,
+  "userType" : "ADMIN",
   "firstName": "Dana",
   "lastName": "Scully",
   "handle": "@dscully",

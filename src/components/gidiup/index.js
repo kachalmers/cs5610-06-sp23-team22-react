@@ -7,6 +7,7 @@ import Feed from "../feed";
 import FindFriends from "../find-friends";
 import todosReducer from "../reducers/todos-reducer";
 import profileReducer from "../reducers/profile-reducer";
+import usersReducer from "../reducers/users-reducer";
 import { configureStore } from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 import EditProfile from "../profile/edit-profile";
@@ -15,7 +16,7 @@ import Register from "../register";
 import MyToDosScreen from "../my-todos-screen";
 
 const store = configureStore(
-    {reducer: {todos: todosReducer, profile: profileReducer}});
+    {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer}});
 
 function GidiUp() {
 

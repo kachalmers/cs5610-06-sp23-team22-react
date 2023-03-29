@@ -1,0 +1,47 @@
+[
+  {
+    "_id": 1,
+    "userType" : "ADMIN",
+    "firstName": "Dana",
+    "lastName": "Scully",
+    "handle": "@dscully",
+    "profilePicture": "scully.png",
+    "bannerPicture": "xfiles_banner.png",
+    "interests": ["crime-solving", "reading", "medicine"],
+    "email": "dscully@email.com",
+    "phone": "012-345-6789",
+    "dateJoined": "9/1993",
+    "followingCount": 340,
+    "followersCount": 223
+  },
+  {
+    "_id": 2,
+    "userType" : "DOER",
+    "firstName": "Scooby",
+    "lastName": "Doo",
+    "handle": "@roobydoobydoo",
+    "profilePicture": "scooby.png",
+    "bannerPicture": "sandwich-banner.png",
+    "interests": ["eating", "sleeping"],
+    "email": "sdoo@email.com",
+    "phone": "012-345-6789",
+    "dateJoined": "9/1969",
+    "followingCount": 4,
+    "followersCount": 6543
+  },
+  {
+    "_id": 3,
+    "userType" : "SUPPORTER",
+    "firstName": "Pearl",
+    "lastName": "Krabs",
+    "handle": "@pkrabs",
+    "profilePicture": "pearl.png",
+    "bannerPicture": "boys-who-cry-banner.png",
+    "interests": ["cheerleading", "concerts", "shopping"],
+    "email": "pkrabs@email.com",
+    "phone": "012-345-6789",
+    "dateJoined": "5/1990",
+    "followingCount": 12345,
+    "followersCount": 12345
+  }
+]
