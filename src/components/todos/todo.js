@@ -1,12 +1,15 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React from "react";
 import {useDispatch} from "react-redux";
-import {completeToggle} from "../reducers/todos-reducer"
+import {completeToggle,deletetodo} from "../reducers/todos-reducer"
 
 const ToDo = ({todo}) => {
     const dispatch = useDispatch();
     const toggleCompleteHandler = (id) => {
         dispatch(completeToggle(id));
+    }
+    const deleteTodoHandler = (id) => {
+        dispatch(deletetodo(id));
     }
     return (
         <div className="list-group-item">
@@ -29,9 +32,13 @@ const ToDo = ({todo}) => {
                         </div>
                     }
                 </div>
-
                 <div className="d-flex col">
                     {todo.todo}
+                </div>
+                <div    className="float-right text-danger fs-3"
+                        onClick={() => deleteTodoHandler(todo._id)}
+                >
+                    <FontAwesomeIcon icon="fa-solid fa-circle-xmark"/>
                 </div>
             </div>
         </div>
