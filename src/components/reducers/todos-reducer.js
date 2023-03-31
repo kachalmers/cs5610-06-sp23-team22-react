@@ -30,6 +30,14 @@ const todosSlice = createSlice({
                                                post.likes++;
                                            }
                                        },
+                                       completeToggle(state, action) {
+                                           const post = state.find((post) => post._id === action.payload)
+                                           if (post.completed) {
+                                               post.completed = false   // mark incomplete
+                                           } else {
+                                               post.completed = true    // mark complete
+                                           }
+                                       },
                                        createtodo(state, action) {
                                            state.unshift({
                                                              ...templatetodo,
@@ -50,5 +58,5 @@ const todosSlice = createSlice({
                                        }
                                    }
                                });
-export const {likeToggle,createtodo,deletetodo,updatetodo} = todosSlice.actions;
+export const {likeToggle,createtodo,deletetodo,updatetodo,completeToggle} = todosSlice.actions;
 export default todosSlice.reducer;
