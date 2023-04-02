@@ -5,4 +5,6 @@ const FindFriends = () => {
         </>
     )
 }
+
+
 export default FindFriends;
