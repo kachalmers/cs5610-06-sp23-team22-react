@@ -6,7 +6,9 @@
     "userName": "Zombie",
     "handle": "@zombie",
     "todo": "Buy cheese for friends",
-    "completed": true
+    "completed": true,
+    "feedLiked": true,
+    "likes": 0
   },
   { "_id": 234,
     "time": "4d",
@@ -14,7 +16,9 @@
     "userName": "Alien",
     "handle": "@alien",
     "todo": "Abduct Scully",
-    "completed": false
+    "completed": false,
+    "feedLiked": true,
+    "likes": 0
   },
   { "_id": 345,
     "time": "2h",
@@ -22,7 +26,9 @@
     "userName": "Fox Mulder",
     "handle": "@mulder",
     "todo": "Save Scully from aliens",
-    "completed": false
+    "completed": false,
+    "feedLiked": true,
+    "likes": 0
   },
   {
     "_id": 456,
@@ -31,7 +37,9 @@
     "userName": "Dana Scully",
     "handle": "@scully",
     "todo": "Buy birthday card",
-    "completed": true
+    "completed": true,
+    "feedLiked": true,
+    "likes": 0
   },
   { "_id": 567,
     "time": "4d",
@@ -39,7 +47,9 @@
     "userName": "Alien",
     "handle": "@alien",
     "todo": "Eat breakfast",
-    "completed": false
+    "completed": false,
+    "feedLiked": true,
+    "likes": 0
   },
   { "_id": 678,
     "time": "2h",
@@ -47,6 +57,8 @@
     "userName": "Dana Scully",
     "handle": "@scully",
     "todo": "Buy milk",
-    "completed": false
+    "completed": false,
+    "feedLiked": true,
+    "likes": 0
   }
 ]

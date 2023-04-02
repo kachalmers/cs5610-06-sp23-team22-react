@@ -1,0 +1,24 @@
+[
+  {
+    "_id": 234,
+    "userName": "Lisa",
+    "image": "",
+    "todo": "Eat breakfast",
+    "feedLiked": true,
+    "likes": 0
+  },
+  { "_id": 345,
+    "userName": "Mary",
+    "image": "",
+    "todo": "Eat lunch",
+    "feedLiked": true,
+    "likes": 0
+  },
+  { "_id": 123,
+    "userName": "Sophie",
+    "image": "",
+    "todo": "Eat dinner",
+    "feedLiked": true,
+    "likes": 0
+  }
+]
