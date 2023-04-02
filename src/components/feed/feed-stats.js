@@ -1,13 +1,18 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {likeToggle} from "../../reducers/feed-reducer";
+import {likeToggle} from "../reducers/todos-reducer";
 
 const FeedStats = (
     {
         feed = {
-            "userName": "Lisa",
-            "image": "",
-            "todo": "Eat breakfast",
+            "_id": 123,
+            "time": "2h",
+            "congrats": 2345,
+            "userName": "Zombie",
+            "handle": "@zombie",
+            "image": "pearl.png",
+            "todo": "Buy cheese for friends",
+            "completed": true,
             "feedLiked": true,
             "likes": 0
         }

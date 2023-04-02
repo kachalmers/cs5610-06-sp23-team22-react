@@ -14,9 +14,10 @@ import EditProfile from "../profile/edit-profile";
 import React from "react";
 import Register from "../register";
 import MyToDosScreen from "../my-todos-screen";
+import feedReducer from "../reducers/feed-reducer";
 
 const store = configureStore(
-    {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer}});
+    {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer, feed: feedReducer}});
 
 function GidiUp() {
 

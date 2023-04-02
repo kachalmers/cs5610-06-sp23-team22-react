@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import todo from '../data/feed.json';
+import todo from '../data/todos.json';
 
 const currentUser = {
     "userName": "Lisa",
