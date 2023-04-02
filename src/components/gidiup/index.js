@@ -1,7 +1,7 @@
 import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import NavigationSidebar from "../navigationsidebar";
-import Login from "../login";
+import Login from "../login/login";
 import Profile from "../profile";
 import Feed from "../feed";
 import FindFriends from "../find-friends";
