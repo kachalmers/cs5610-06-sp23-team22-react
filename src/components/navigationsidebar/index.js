@@ -16,7 +16,7 @@ const NavigationSidebar = () => {
         },
         {
             label: 'Register',
-            link: '/signup',
+            link: '/sign-up',
             activePaths: ['sign-up'],
             iconClassName: "fa-solid fa-user"
         },

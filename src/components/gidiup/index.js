@@ -12,8 +12,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 import EditProfile from "../profile/edit-profile";
 import React from "react";
-import Register from "../register";
 import MyToDosScreen from "../my-todos-screen";
+import SignUp from "../signup/signup";
 
 const store = configureStore(
     {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer}});
@@ -33,7 +33,7 @@ function GidiUp() {
                             <Route index element={<MyToDosScreen/>}/>
                             <Route path="gidiup" element={<MyToDosScreen/>}/>
                             <Route path="login" element={<Login/>}/>
-                            <Route path="register" element={<Register/>}/>
+                            <Route path="sign-up" element={<SignUp/>}/>
                             <Route path="profile/*" element={<Profile/>}/>
                             <Route path="edit-profile" element={<EditProfile/>}/>
                             <Route path="todos" element={<MyToDosScreen/>}/>

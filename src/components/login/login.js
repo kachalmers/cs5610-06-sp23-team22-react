@@ -46,19 +46,9 @@ export default class Login extends Component {
                     Forgot <a href="#">password?</a>
                 </p>
                 <div className={"Register New User bi-text-indent-right"}>
-                    Register <a href={"#"}>New Account</a>
+                    Register <a href={"/sign-up"}>New Account</a>
                 </div>
             </form>
         )
     }
 }
-
-/*
-const Login = () => {
-    return(
-        <>
-            Login
-        </>
-    )
-}
-export default Login;*/
