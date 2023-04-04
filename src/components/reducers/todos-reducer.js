@@ -9,11 +9,12 @@ const currentUser = {
 
 const templatetodo = {
     ...currentUser,
-    "topic": "Space",
     "time": "2h",
-    "liked": false,
-    "replies": 0,
-    "likes": 0,
+    "congrats": 0,
+    "userName": "Default Username",
+    "handle": "@defaultHandle",
+    "todo": "Default todo",
+    "completed": false
 }
 
 const todosSlice = createSlice({
