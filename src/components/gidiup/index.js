@@ -34,7 +34,7 @@ function GidiUp() {
                             <Route index element={<MyToDosScreen/>}/>
                             <Route path="gidiup" element={<MyToDosScreen/>}/>
                             <Route path="login" element={<Login/>}/>
-                            <Route path="register" element={<Register/>}/>
+                            <Route path="sign-up" element={<SignUp/>}/>
                             <Route path="profile/*" element={<Profile/>}/>
                             <Route path="edit-profile" element={<EditProfile/>}/>
                             <Route path="todos" element={<MyToDosScreen/>}/>
