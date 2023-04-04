@@ -28,7 +28,7 @@ const FeedItem = ({todo}) => {
                             </span>
                         </span>
                                 <p>
-                                    <FeedStats feed={todo} />
+                                    <FeedStats todo={todo} />
                                 </p>
                             </b>
                         </div>
