@@ -15,6 +15,12 @@ const NavigationSidebar = () => {
             iconClassName: "fa-solid fa-hat-cowboy"
         },
         {
+            label: 'Register',
+            link: '/sign-up',
+            activePaths: ['sign-up'],
+            iconClassName: "fa-solid fa-user"
+        },
+        {
             label: 'Login',
             link: '/login',
             activePaths: ['login'],

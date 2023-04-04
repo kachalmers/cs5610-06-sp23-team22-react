@@ -1,7 +1,7 @@
 import {Routes, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import NavigationSidebar from "../navigationsidebar";
-import Login from "../login";
+import Login from "../login/login";
 import Profile from "../profile";
 import Feed from "../feed";
 import FindFriends from "../find-friends";
@@ -12,9 +12,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 import EditProfile from "../profile/edit-profile";
 import React from "react";
-import Register from "../register";
 import MyToDosScreen from "../my-todos-screen";
 import feedReducer from "../reducers/feed-reducer";
+import SignUp from "../signup/signup";
 
 const store = configureStore(
     {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer, feed: feedReducer}});
