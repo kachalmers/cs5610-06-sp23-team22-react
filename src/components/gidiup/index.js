@@ -15,6 +15,7 @@ import React from "react";
 import MyToDosScreen from "../my-todos-screen";
 import feedReducer from "../reducers/feed-reducer";
 import SignUp from "../signup/signup";
+import Hoedown from "../hoedown";
 
 const store = configureStore(
     {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer, feed: feedReducer}});
@@ -40,6 +41,7 @@ function GidiUp() {
                             <Route path="todos" element={<MyToDosScreen/>}/>
                             <Route path="feed" element={<Feed/>}/>
                             <Route path="find-friends" element={<FindFriends/>}/>
+                            <Route path="hoedown" element={<Hoedown/>}/>
                         </Routes>
                     </div>
                 </div>
