@@ -9,10 +9,16 @@ const NavigationSidebar = () => {
     const active = paths[1];
     const screenChoices = [
         {
-            label: 'GidiUp',
-            link: '/gidiup',
+            label: 'Hoedown',
+            link: '/hoedown',
             activePaths: [],
             iconClassName: "fa-solid fa-hat-cowboy"
+        },
+        {
+            label: 'Feed',
+            link: '/feed',
+            activePaths: ['feed','hoedown','',undefined],
+            iconClassName: "fa-regular fa-newspaper"
         },
 /*        {
             label: 'Register',
@@ -28,22 +34,16 @@ const NavigationSidebar = () => {
         },*/
         {
             label: 'Profile',
-            link: '/profile/todos',
+            link: '/profile/liked-music',
             activePaths: ['profile','edit-profile'],
             iconClassName: "fa-regular fa-user"
         },
-        {
+/*        {
             label: 'To-do',
             link: '/todos',
-            activePaths: ['todos','gidiup','',undefined],
+            activePaths: ['todos'],
             iconClassName: "fa-solid fa-list"
-        },
-        {
-            label: 'Feed',
-            link: '/feed',
-            activePaths: ['feed'],
-            iconClassName: "fa-regular fa-newspaper"
-        },
+        },*/
         {
             label: 'Find friends',
             link: '/find-friends',
@@ -51,9 +51,9 @@ const NavigationSidebar = () => {
             iconClassName: "fa-solid fa-user-plus"
         },
         {
-            label: 'Hoedown',
-            link: '/hoedown',
-            activePaths: ['hoedown'],
+            label: 'Search',
+            link: '/search',
+            activePaths: ['search'],
             iconClassName: "fa-solid fa-music"
         }
     ]

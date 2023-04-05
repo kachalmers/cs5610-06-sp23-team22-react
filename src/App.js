@@ -1,10 +1,10 @@
 import './App.css';
-import GidiUp from './components/gidiup'
+import Hoedown from './components/hoedown'
 import "./components/fontawesome-icons"
 
 function App() {
   return (
-    <GidiUp/>
+    <Hoedown/>
   );
 }
 

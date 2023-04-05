@@ -19,7 +19,7 @@ const FeedItem = ({todo}) => {
                                 </b>
                                 <b>
                                     <b className="m-0 me-2">
-                                        completed
+                                        recommends
                                     </b>
                                 </b>
                                 <span>

@@ -40,6 +40,7 @@ const Profile = () => {
                 {profile.firstName} {profile.lastName}
                 <span className="text-secondary"> &#183; {profile.handle}</span>
             </h5>
+            <div className="pt-2">{profile.userType}</div>
             <div className="d-flex pt-2 pb-2">
                 <div className="wd-text-decoration-none text-secondary pe-3">
                     <i className="bi bi-calendar"></i><span
@@ -60,20 +61,24 @@ const Profile = () => {
             </div>
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                    <Link to="/profile/todos" className={`nav-link`}>To-Dos</Link>
+                    <Link to="/profile/liked-music" className={`nav-link`}>Liked Music</Link>
                 </li>
+
+                {/* Artist option only */}
                 <li className="nav-item">
-                    <Link to="/profile/following" className="nav-link">Following ({profile.followingCount})</Link>
+                    <Link to="/profile/playlists" className="nav-link">Playlists</Link>
                 </li>
+
                 <li className="nav-item">
-                    <Link to="/profile/followers" className="nav-link">Followers ({profile.followersCount})</Link>
+                    <Link to="/profile/following" className="nav-link"><b>{profile.followingCount}</b> Following</Link>
+
                 </li>
-                <li className="nav-item">
-                    <Link to="/profile/congrats" className="nav-link">My Congrats</Link>
+                <li>
+                    <Link to="/profile/followers" className="nav-link"><b>{profile.followersCount}</b> Followers</Link>
                 </li>
             </ul>
             <Routes>
-                <Route path="/todos" element={<MyToDos/>}/>
+                <Route path="/liked-music" element={<MyToDos/>}/>
             </Routes>
         </>
     )
