@@ -1,8 +1,8 @@
 [
   {
     "_id": 123,
-    "userName": "NASA",
-    "handle": "NASA",
+    "userName": "Pearl",
+    "handle": "pearl",
     "avatarIcon": "../images/pearl.png"
   },
   {
@@ -13,8 +13,8 @@
   },
   {
     "_id": 345,
-    "userName": "SpaceX",
-    "handle": "SpaceX",
+    "userName": "Dana",
+    "handle": "dscully",
     "avatarIcon": "../images/scully.png"
   }
 ]

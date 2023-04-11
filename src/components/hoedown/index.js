@@ -16,6 +16,7 @@ import MyToDosScreen from "../my-todos-screen";
 import feedReducer from "../reducers/feed-reducer";
 import SignUp from "../signup/signup";
 import HoedownSearch from "../hoedown-search";
+import TrackDetailsScreen from "../hoedown-search/TrackDetailsScreen";
 
 const store = configureStore(
     {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer, feed: feedReducer}});
@@ -42,6 +43,8 @@ function Hoedown() {
                             <Route path="feed" element={<Feed/>}/>
                             <Route path="find-friends" element={<FindFriends/>}/>
                             <Route path="search" element={<HoedownSearch/>}/>
+                            <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
+                            <Route path="track/:spotifyID" element={<TrackDetailsScreen/>}/>
                         </Routes>
                     </div>
                 </div>

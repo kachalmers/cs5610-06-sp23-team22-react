@@ -8,13 +8,12 @@ const FindFriendsList = () => {
     return (
         <ul className="list-group">
             <li className="list-group-item">
-                <div className="col-11 position-relative">
+                <div className="col-11 position-relative mb-3">
                     <input placeholder="Search Tuiter"
                            className="form-control rounded-pill ps-5"/>
                     <i className="bi bi-search position-absolute wd-nudge-up"></i>
                 </div>
                 <h3>Who to follow</h3>
-
             </li>
             {
                 whoArray.map(who =>

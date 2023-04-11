@@ -36,7 +36,7 @@ const NavigationSidebar = () => {
             label: 'Profile',
             link: '/profile/liked-music',
             activePaths: ['profile','edit-profile'],
-            iconClassName: "fa-regular fa-user"
+            iconClassName: "fa-solid fa-user"
         },
 /*        {
             label: 'To-do',
@@ -48,7 +48,7 @@ const NavigationSidebar = () => {
             label: 'Find friends',
             link: '/find-friends',
             activePaths: ['find-friends'],
-            iconClassName: "fa-solid fa-user-plus"
+            iconClassName: "fa-solid fa-users"
         },
         {
             label: 'Search',
@@ -83,13 +83,15 @@ const NavigationSidebar = () => {
                 <div>
                     <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
                           to="/sign-up">
-                        Register
+                        <span className="d-none d-md-block">Register</span>
+                        <span className="d-block d-md-none"><FontAwesomeIcon icon="fa-regular fa-user"/></span>
                     </Link>
                 </div>
                 <div>
                     <Link className="rounded-pill btn btn-primary mt-2 fw-bold w-100"
                           to="/login">
-                        Log In
+                        <span className="d-none d-md-block">Log In</span>
+                        <span className="d-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-user"/></span>
                     </Link>
                 </div>
             </div>
