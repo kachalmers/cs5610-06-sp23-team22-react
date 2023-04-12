@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import {searchSpotifySongs} from "./hoedown-service";
+import {searchSpotifySongs,findSpotifySong} from "./hoedown-service";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
@@ -10,19 +10,12 @@ const HoedownSearch = () => {
     const navigate = useNavigate();
     const [search,setSearch] = useState(searchTerm);
     const [results, setResults] = useState([]);
-    const [token,setToken] = useState("");
-    const searchSpotify = async () => {
-        if (search) {
-            const response = await searchSpotifySongs(token,search);
-            setResults(response);
-            navigate(`/search/${search}`);
-        }
-    };
-
+    //const [token,setToken] = useState("");
     const [albums,setAlbums] = useState([]);
     const [tracks,setTracks] = useState([]);
 
-    useEffect(() => {
+/*    useEffect(() => {
+        console.log("we want token!!!!!!!!!!!!!")
         // API Access Token
         let authParams = {
             method: 'POST',
@@ -34,7 +27,7 @@ const HoedownSearch = () => {
         fetch('https://accounts.spotify.com/api/token',authParams)
             .then(response => response.json())
             .then(data => setToken(data.access_token))
-    },[]);
+    },[]);*/
 
     useEffect(() => {
         if (searchTerm) {
@@ -42,6 +35,14 @@ const HoedownSearch = () => {
         }
     }, [searchTerm]);
 
+    const searchSpotify = async () => {
+        if (search) {
+            const response = await searchSpotifySongs(search);
+            setResults(response);
+            navigate(`/search/${search}`);
+        }
+    };
+    findSpotifySong("086myS9r57YsLbJpU0TgK9");
     return (
         <>
             <div className="d-flex mb-2">
