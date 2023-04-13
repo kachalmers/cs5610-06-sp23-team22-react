@@ -1,10 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import whoArray from './who.json';
-import FindFriendsListItem
-    from "./find-friends-list-item";
+import FindFriendsListItem from "./find-friends-list-item";
 import "./index.css";
+import {useDispatch,useSelector} from "react-redux";
+import {
+    findAllUsersThunk
+} from "../../services/users/users-thunks";
 
 const FindFriendsList = () => {
+    let currentUser = useSelector((state) => state.currentUser);
+    let usersInitial = useSelector((state) => state.users.users);
+    const dispatch = useDispatch();
+
+    const [users, setUsers] = useState(usersInitial);
+
+    const followUser = async () => {
+        //await userFollowsUser(currentUser._id, profile._id);
+    };
+
+    const fetchUsers = async () => {
+        const response = await dispatch(findAllUsersThunk());
+        setUsers(response.payload);
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
     return (
         <ul className="list-group">
             <li className="list-group-item">
@@ -16,10 +38,12 @@ const FindFriendsList = () => {
                 <h3>Who to follow</h3>
             </li>
             {
-                whoArray.map(who =>
+                users.map(who =>
                                  <FindFriendsListItem
                                      key={who._id}
-                                     who={who}/>
+                                     who={who}
+                                     currentUser={currentUser}
+                                 />
                 )
             }
         </ul>

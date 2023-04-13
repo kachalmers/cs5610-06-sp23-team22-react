@@ -1,23 +1,21 @@
 import React from "react";
-const FindFriendsListItem = (
-    {
-        who = { userName: 'NASA', handle: 'NASA', avatarIcon: 'nasa.jpg' }
-    }
-) => {
+const FindFriendsListItem = ({who,currentUser}) => {
     return(
         <li className="list-group-item">
             <div className="d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
                     <div className="me-2">
-                        <img className="rounded-circle" height={40} src={who.avatarIcon}/>
+                        <img className="rounded-circle" height={40} src="https://media.istockphoto.com/id/532629379/vector/singing-cowboy-with-guitar.jpg?s=612x612&w=0&k=20&c=GY4MyNDgbwZdhHvPhRJ636EK0HW75PU5mLGw--TOYHc="/>
                     </div>
                     <div>
-                        <div className="fw-bold">{who.userName}</div>
-                        <div>@{who.handle}</div>
+                        <div className="fw-bold">{who.firstName} {who.lastName}</div>
+                        <div>@{who.username}</div>
                     </div>
                 </div>
                 <div className="float-right">
-                    <button className="btn btn-primary rounded-pill">Follow</button>
+                    {
+                        currentUser && <button className="btn btn-primary rounded-pill">Follow</button>
+                    }
                 </div>
             </div>
         </li>

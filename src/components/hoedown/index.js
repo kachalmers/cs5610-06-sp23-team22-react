@@ -17,39 +17,39 @@ import feedReducer from "../reducers/feed-reducer";
 import SignUp from "../signup/signup";
 import HoedownSearch from "../hoedown-search";
 import TrackDetailsScreen from "../hoedown-search/TrackDetailsScreen";
-
-const store = configureStore(
-    {reducer: {todos: todosReducer, profile: profileReducer, users: usersReducer, feed: feedReducer}});
+import store from "../../redux/store";
+import CurrentUserContext from "./current-user-context";
 
 function Hoedown() {
-
     return (
         <Provider store={store}>
-        <BrowserRouter>
-            <div className="container mt-2 mb-2">
-                <div className="row">
-                    <div className="col-2 col-lg-3 col-xl-2">
-                        <NavigationSidebar/>
+            <CurrentUserContext>
+                <BrowserRouter>
+                    <div className="container mt-2 mb-2">
+                        <div className="row">
+                            <div className="col-2 col-lg-3 col-xl-2">
+                                <NavigationSidebar/>
+                            </div>
+                            <div className="col-10 col-lg-9 col-xl-10">
+                                <Routes>
+                                    <Route index element={<MyToDosScreen/>}/>
+                                    <Route path="hoedown" element={<Feed/>}/>
+                                    <Route path="login" element={<Login/>}/>
+                                    <Route path="sign-up" element={<SignUp/>}/>
+                                    <Route path="profile/*" element={<Profile/>}/>
+                                    <Route path="edit-profile" element={<EditProfile/>}/>
+                                    <Route path="todos" element={<MyToDosScreen/>}/>
+                                    <Route path="feed" element={<Feed/>}/>
+                                    <Route path="find-friends" element={<FindFriends/>}/>
+                                    <Route path="search" element={<HoedownSearch/>}/>
+                                    <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
+                                    <Route path="track/:spotifyID" element={<TrackDetailsScreen/>}/>
+                                </Routes>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-10 col-lg-9 col-xl-10">
-                        <Routes>
-                            <Route index element={<MyToDosScreen/>}/>
-                            <Route path="hoedown" element={<Feed/>}/>
-                            <Route path="login" element={<Login/>}/>
-                            <Route path="sign-up" element={<SignUp/>}/>
-                            <Route path="profile/*" element={<Profile/>}/>
-                            <Route path="edit-profile" element={<EditProfile/>}/>
-                            <Route path="todos" element={<MyToDosScreen/>}/>
-                            <Route path="feed" element={<Feed/>}/>
-                            <Route path="find-friends" element={<FindFriends/>}/>
-                            <Route path="search" element={<HoedownSearch/>}/>
-                            <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
-                            <Route path="track/:spotifyID" element={<TrackDetailsScreen/>}/>
-                        </Routes>
-                    </div>
-                </div>
-            </div>
-        </BrowserRouter>
+                </BrowserRouter>
+            </CurrentUserContext>
         </Provider>
     )
 }

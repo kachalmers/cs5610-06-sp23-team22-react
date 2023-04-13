@@ -5,7 +5,7 @@ import {saveNewProfile} from "../reducers/profile-reducer";
 import {useDispatch} from "react-redux";
 
 const EditProfile = () => {
-    let profile = useSelector((state) => state.profile);
+    let profile = useSelector((state) => state.currentUser);
     let [name,setName]=useState(profile.firstName+' '+profile.lastName);
     let [interests,setInterests]=useState(profile.interests.join(","));
     const dispatch = useDispatch();
