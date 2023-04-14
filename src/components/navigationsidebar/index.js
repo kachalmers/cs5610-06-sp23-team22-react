@@ -83,7 +83,7 @@ const NavigationSidebar = () => {
                 <div>
                     <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
                           to="/sign-up">
-                        <span className="d-none d-md-block">Register</span>
+                        <span className="d-none d-md-block">Sign Up</span>
                         <span className="d-block d-md-none"><FontAwesomeIcon icon="fa-regular fa-user"/></span>
                     </Link>
                 </div>
