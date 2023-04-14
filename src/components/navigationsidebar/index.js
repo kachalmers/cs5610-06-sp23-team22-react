@@ -1,11 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {useLocation} from "react-router";
+import {useLocation,useNavigate} from "react-router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {logoutThunk} from "../../services/users/users-thunks";
+
 
 const NavigationSidebar = () => {
     const { currentUser } = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const active = paths[1];
@@ -82,7 +86,7 @@ const NavigationSidebar = () => {
                 }
             </div>
             {
-                currentUser===null ?
+                currentUser===null || currentUser===undefined ?
                 <div>
                     <div>
                         <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
@@ -103,12 +107,16 @@ const NavigationSidebar = () => {
                 </div>
                 :
                 <div>
-                    <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
-                          to="/">
+                    <button className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
+                            onClick={() => {
+                                dispatch(logoutThunk());
+                                navigate("/login");
+                            }}
+                    >
                         <span className="d-none d-md-block">Log Out</span>
                         <span className="d-block d-md-none"><FontAwesomeIcon
                             icon="fa-regular fa-user"/></span>
-                    </Link>
+                    </button>
                 </div>
             }
         </div>

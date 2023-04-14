@@ -4,8 +4,7 @@ import {Link} from "react-router-dom";
 import {Route, Routes} from "react-router";
 import {
     profileThunk,
-    logoutThunk,
-    updateUserThunk,
+    logoutThunk
 } from "../../services/users/users-thunks";
 import { useNavigate, useParams } from "react-router";
 import { findUserById } from "../../services/users/users-service";
@@ -59,9 +58,6 @@ const Profile = () => {
 /*    const followUser = async () => {
         await userFollowsUser(currentUser._id, profile._id);
     };*/
-    const updateProfile = async () => {
-        await dispatch(updateUserThunk(profile));
-    };
 
     useEffect(() => {
         loadScreen();
@@ -83,14 +79,14 @@ const Profile = () => {
             </div>
             <div>
                 {
-                    profile === currentUser &&
+                    currentUser && profile._id === currentUser._id &&
                     <Link   to="/edit-profile"
                             className="mt-2 btn btn-large btn-light border-secondary fw-bold rounded-pill float-end">
                     Edit profile
                     </Link>
                 }
                 {
-                    currentUser && currentUser !== profile &&
+                    currentUser && currentUser._id !== profile._id &&
                     <button className="mt-2 btn btn-large btn-primary fw-bold rounded-pill float-end">
                     Follow
                     </button>
@@ -109,10 +105,10 @@ const Profile = () => {
                 <span className="ps-1">{profile && profile.role}</span>
             </div>
             {
-                profile === currentUser &&
+                profile._id === currentUser._id &&
                 <div className="wd-text-decoration-none text-secondary pe-3">
                     <i className="bi bi-envelope"></i>
-                    <span className="ps-1">{profile && profile.email}</span>
+                    <span className="ps-1">{profile.email}</span>
                 </div>
             }
         </div>
