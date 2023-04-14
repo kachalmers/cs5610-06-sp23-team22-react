@@ -15,41 +15,17 @@ const NavigationSidebar = () => {
     const active = paths[1];
     const screenChoices = [
         {
-            label: 'Hoedown',
-            link: '/hoedown',
-            activePaths: [],
-            iconClassName: "fa-solid fa-hat-cowboy"
-        },
-        {
-            label: 'Feed',
-            link: '/feed',
-            activePaths: ['feed','hoedown','',undefined],
+            label: 'Home',
+            link: '/home',
+            activePaths: ['home','hoedown','',undefined],
             iconClassName: "fa-solid fa-house"
         },
-/*        {
-            label: 'Register',
-            link: '/sign-up',
-            activePaths: ['sign-up'],
-            iconClassName: "fa-solid fa-user"
-        },
-        {
-            label: 'Login',
-            link: '/login',
-            activePaths: ['login'],
-            iconClassName: "fa-solid fa-door-open"
-        },*/
         {
             label: 'Profile',
             link: '/profile',
             activePaths: ['profile','edit-profile'],
             iconClassName: "fa-solid fa-user"
         },
-/*        {
-            label: 'To-do',
-            link: '/todos',
-            activePaths: ['todos'],
-            iconClassName: "fa-solid fa-list"
-        },*/
         {
             label: 'Find friends',
             link: '/find-friends',
@@ -65,6 +41,12 @@ const NavigationSidebar = () => {
     ]
     return (
         <div>
+            <Link   to='/hoedown' className="mb-2 text-decoration-none">
+                <h3 className="d-flex justify-content-center align-items-center">
+                    <FontAwesomeIcon icon="fa-solid fa-hat-cowboy"/>
+                    <div className="d-none d-lg-block ms-1">Hoedown</div>
+                </h3>
+            </Link>
             <div className="list-group">
                 {
                     screenChoices.map((screenChoice,index) =>

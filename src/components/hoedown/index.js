@@ -32,15 +32,14 @@ function Hoedown() {
                             </div>
                             <div className="col-10 col-lg-9 col-xl-10">
                                 <Routes>
-                                    <Route index element={<MyToDosScreen/>}/>
+                                    <Route index element={<Feed/>}/>
                                     <Route path="hoedown" element={<Feed/>}/>
+                                    <Route path="home" element={<Feed/>}/>
                                     <Route path="login" element={<Login/>}/>
                                     <Route path="sign-up" element={<SignUp/>}/>
                                     <Route path="profile" element={<Profile/>}/>
                                     <Route path="profile/:userId/*" element={<Profile/>}/>
                                     <Route path="edit-profile" element={<EditProfile/>}/>
-                                    <Route path="todos" element={<MyToDosScreen/>}/>
-                                    <Route path="feed" element={<Feed/>}/>
                                     <Route path="find-friends" element={<FindFriends/>}/>
                                     <Route path="search" element={<HoedownSearch/>}/>
                                     <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
