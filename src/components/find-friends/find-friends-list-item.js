@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {userTogglesFollow} from "../../services/follows/follows-service";
 
 const FindFriendsListItem = ({who,currentUser}) => {
+    const [user, setUser] = useState(who);
+
+    const toggleFollow = async () => {
+        await userTogglesFollow(currentUser._id, who._id);
+        console.log("Before: "+user.followedByMe);
+        let newFollowedByMe = !user.followedByMe;
+        console.log("After: "+newFollowedByMe);
+        setUser({ ...user, followedByMe: newFollowedByMe})
+    };
+
     return(
         <li className="list-group-item">
             <div className="d-flex justify-content-between align-items-center">
@@ -16,15 +27,19 @@ const FindFriendsListItem = ({who,currentUser}) => {
                 </div>
                 <div className="float-right fw-bold">
                     {
-                        currentUser && currentUser._id!==who._id && !who.followedByMe &&
-                        <button className="btn btn-primary rounded-pill d-flex align-items-center">
+                        currentUser && currentUser._id!==user._id && !user.followedByMe &&
+                        <button className="btn btn-primary rounded-pill d-flex align-items-center"
+                                onClick={toggleFollow}
+                        >
                             <FontAwesomeIcon icon="fa-solid fa-user-plus"/>
                             <span className="d-none d-md-block ms-1">Follow</span>
                         </button>
                     }
                     {
-                        currentUser && who.followedByMe &&
-                        <button className="btn btn-dark rounded-pill d-flex align-items-center">
+                        currentUser && user.followedByMe &&
+                        <button className="btn btn-dark rounded-pill d-flex align-items-center"
+                                onClick={toggleFollow}
+                        >
                             <FontAwesomeIcon icon="fa-solid fa-user-xmark"/>
                             <span className="d-none d-md-block ms-1">Unfollow</span>
                         </button>

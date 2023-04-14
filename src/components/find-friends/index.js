@@ -37,7 +37,6 @@ const FindFriendsList = () => {
                 </div>
                 <h3>Who to follow</h3>
             </li>
-            {console.log(currentUser)}
             {
                 users.map(who =>
                                  <FindFriendsListItem
