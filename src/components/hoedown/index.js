@@ -36,7 +36,8 @@ function Hoedown() {
                                     <Route path="hoedown" element={<Feed/>}/>
                                     <Route path="login" element={<Login/>}/>
                                     <Route path="sign-up" element={<SignUp/>}/>
-                                    <Route path="profile/*" element={<Profile/>}/>
+                                    <Route path="profile" element={<Profile/>}/>
+                                    <Route path="profile/:userId/*" element={<Profile/>}/>
                                     <Route path="edit-profile" element={<EditProfile/>}/>
                                     <Route path="todos" element={<MyToDosScreen/>}/>
                                     <Route path="feed" element={<Feed/>}/>

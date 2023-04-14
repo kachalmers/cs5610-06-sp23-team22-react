@@ -97,7 +97,7 @@ function SignUp() {
             </div>
 
             <div className="mb-3">
-                Account Type
+                Role
                 <div className="form-check"
                      onClick={(e) => {setRole("ARTIST")}}
                 >

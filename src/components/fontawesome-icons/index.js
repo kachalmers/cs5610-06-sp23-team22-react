@@ -7,7 +7,8 @@ import {
     faUserPlus,
     faCircleXmark as fasCircleXmark,
     faMusic,
-    faUsers
+    faUsers,
+    faHouse
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
@@ -28,5 +29,6 @@ library.add(
     faCircle,
     fasCircleXmark,
     faMusic,
-    faUsers
+    faUsers,
+    faHouse
 )

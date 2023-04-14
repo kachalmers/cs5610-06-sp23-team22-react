@@ -2,8 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useSelector} from "react-redux";
 
 const NavigationSidebar = () => {
+    const { currentUser } = useSelector((state) => state.users);
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const active = paths[1];
@@ -18,7 +20,7 @@ const NavigationSidebar = () => {
             label: 'Feed',
             link: '/feed',
             activePaths: ['feed','hoedown','',undefined],
-            iconClassName: "fa-regular fa-newspaper"
+            iconClassName: "fa-solid fa-house"
         },
 /*        {
             label: 'Register',
@@ -34,7 +36,7 @@ const NavigationSidebar = () => {
         },*/
         {
             label: 'Profile',
-            link: '/profile/liked-music',
+            link: '/profile',
             activePaths: ['profile','edit-profile'],
             iconClassName: "fa-solid fa-user"
         },
@@ -79,22 +81,36 @@ const NavigationSidebar = () => {
                     )
                 }
             </div>
-            <div>
+            {
+                currentUser===null ?
+                <div>
+                    <div>
+                        <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
+                              to="/sign-up">
+                            <span className="d-none d-md-block">Sign Up</span>
+                            <span className="d-block d-md-none"><FontAwesomeIcon
+                                icon="fa-regular fa-user"/></span>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link className="rounded-pill btn btn-primary mt-2 fw-bold w-100"
+                              to="/login">
+                            <span className="d-none d-md-block">Log In</span>
+                            <span className="d-block d-md-none"><FontAwesomeIcon
+                                icon="fa-solid fa-user"/></span>
+                        </Link>
+                    </div>
+                </div>
+                :
                 <div>
                     <Link className="rounded-pill btn btn-dark mt-2 fw-bold w-100"
-                          to="/sign-up">
-                        <span className="d-none d-md-block">Sign Up</span>
-                        <span className="d-block d-md-none"><FontAwesomeIcon icon="fa-regular fa-user"/></span>
+                          to="/">
+                        <span className="d-none d-md-block">Log Out</span>
+                        <span className="d-block d-md-none"><FontAwesomeIcon
+                            icon="fa-regular fa-user"/></span>
                     </Link>
                 </div>
-                <div>
-                    <Link className="rounded-pill btn btn-primary mt-2 fw-bold w-100"
-                          to="/login">
-                        <span className="d-none d-md-block">Log In</span>
-                        <span className="d-block d-md-none"><FontAwesomeIcon icon="fa-solid fa-user"/></span>
-                    </Link>
-                </div>
-            </div>
+            }
         </div>
     );
 };
