@@ -1,4 +1,6 @@
 import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 const FindFriendsListItem = ({who,currentUser}) => {
     return(
         <li className="list-group-item">
@@ -12,9 +14,20 @@ const FindFriendsListItem = ({who,currentUser}) => {
                         <div>@{who.username}</div>
                     </div>
                 </div>
-                <div className="float-right">
+                <div className="float-right fw-bold">
                     {
-                        currentUser && <button className="btn btn-primary rounded-pill">Follow</button>
+                        currentUser && currentUser._id!==who._id && !who.followedByMe &&
+                        <button className="btn btn-primary rounded-pill d-flex align-items-center">
+                            <FontAwesomeIcon icon="fa-solid fa-user-plus"/>
+                            <span className="d-none d-md-block ms-1">Follow</span>
+                        </button>
+                    }
+                    {
+                        currentUser && who.followedByMe &&
+                        <button className="btn btn-dark rounded-pill d-flex align-items-center">
+                            <FontAwesomeIcon icon="fa-solid fa-user-xmark"/>
+                            <span className="d-none d-md-block ms-1">Unfollow</span>
+                        </button>
                     }
                 </div>
             </div>

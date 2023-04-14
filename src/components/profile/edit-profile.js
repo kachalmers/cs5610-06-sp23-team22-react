@@ -26,7 +26,7 @@ const EditProfile = () => {
                 </h3>
             </div>
             <div>
-                <Link to="/edit-profile"
+                <Link to="/profile"
                       className="btn btn-large fw-bold rounded-pill float-end ps-3 pe-3 bg-black text-white"
                       onClick={updateProfile}
                 >

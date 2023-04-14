@@ -5,6 +5,8 @@ import {
     faUser as fasUser,
     faList,
     faUserPlus,
+    faUserCheck,
+    faUserXmark,
     faCircleXmark as fasCircleXmark,
     faMusic,
     faUsers,
@@ -30,5 +32,7 @@ library.add(
     fasCircleXmark,
     faMusic,
     faUsers,
-    faHouse
+    faHouse,
+    faUserCheck,
+    faUserXmark
 )

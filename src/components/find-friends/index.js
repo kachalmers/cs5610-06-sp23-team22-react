@@ -8,7 +8,7 @@ import {
 } from "../../services/users/users-thunks";
 
 const FindFriendsList = () => {
-    let currentUser = useSelector((state) => state.currentUser);
+    let currentUser = useSelector((state) => state.users.currentUser);
     let usersInitial = useSelector((state) => state.users.users);
     const dispatch = useDispatch();
 
@@ -37,6 +37,7 @@ const FindFriendsList = () => {
                 </div>
                 <h3>Who to follow</h3>
             </li>
+            {console.log(currentUser)}
             {
                 users.map(who =>
                                  <FindFriendsListItem
