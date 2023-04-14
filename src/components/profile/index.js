@@ -43,27 +43,20 @@ const Profile = () => {
             return;
         }
         const response = await dispatch(profileThunk());
+        if (response.payload === undefined) {
+            navigate("/login");
+        }
         setProfile(response.payload);
     };
     const loadScreen = async () => {
         await fetchProfile();
-        if (currentUser === null && profile === null && userId===undefined) {
-            //navigate("/login")
-            console.log("navigate to login");
-        }
 /*        await fetchLikes();
         await fetchFollowing();
         await fetchFollowers();*/
     };
-/*    const followUser = async () => {
-        await userFollowsUser(currentUser._id, profile._id);
-    };*/
 
     useEffect(() => {
         loadScreen();
-        console.log("profile: "+profile);
-        console.log("currentUser: "+currentUser);
-        console.log("userId: "+userId)
     }, [userId]);
 
     return(<>{profile && <>
@@ -78,6 +71,7 @@ const Profile = () => {
                         src="https://media.istockphoto.com/id/532629379/vector/singing-cowboy-with-guitar.jpg?s=612x612&w=0&k=20&c=GY4MyNDgbwZdhHvPhRJ636EK0HW75PU5mLGw--TOYHc="/>
             </div>
             <div>
+
                 {
                     currentUser && profile._id === currentUser._id &&
                     <Link   to="/edit-profile"
@@ -105,7 +99,7 @@ const Profile = () => {
                 <span className="ps-1">{profile && profile.role}</span>
             </div>
             {
-                profile._id === currentUser._id &&
+                currentUser && profile._id === currentUser._id &&
                 <div className="wd-text-decoration-none text-secondary pe-3">
                     <i className="bi bi-envelope"></i>
                     <span className="ps-1">{profile.email}</span>

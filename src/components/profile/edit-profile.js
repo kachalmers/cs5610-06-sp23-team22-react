@@ -3,14 +3,17 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {updateUserThunk} from "../../services/users/users-thunks";
+import {useNavigate} from "react-router";
 
 const EditProfile = () => {
     const { currentUser } = useSelector((state) => state.users);
     const [profile, setProfile] = useState(currentUser);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const updateProfile = async () => {
         await dispatch(updateUserThunk(profile));
+        navigate("/profile")
     };
 
     return(<>{profile && <>
@@ -26,12 +29,10 @@ const EditProfile = () => {
                 </h3>
             </div>
             <div>
-                <Link to="/profile"
-                      className="btn btn-large fw-bold rounded-pill float-end ps-3 pe-3 bg-black text-white"
-                      onClick={updateProfile}
-                >
+                <button className="btn btn-large fw-bold rounded-pill float-end ps-3 pe-3 bg-black text-white"
+                      onClick={updateProfile}>
                     Save
-                </Link>
+                </button>
             </div>
         </div>
         <div className="mb-3">
