@@ -1,0 +1,5 @@
+.wd-thumbnail-150px {
+    width: 150px; /* width of container */
+    height: 150px; /* height of container */
+    object-fit: cover;
+}
