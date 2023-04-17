@@ -35,14 +35,16 @@ const HoedownSearch = () => {
 
     return (
         <>
-            <div className="d-flex mb-3">
+            <div className="d-flex mb-3 position-relative align-items-center">
                 <input placeholder="Search Spotify"
-                       className="form-control rounded-pill rounded-end"
+                       className="form-control rounded-pill rounded-end ps-5"
                        value={search}
                        onChange={e => setSearch(e.target.value)}
                 />
+                <i className="bi bi-search position-absolute ps-3"></i>
                 <button className="btn btn-primary rounded-pill rounded-start px-5"
-                        onClick={searchSpotifyForTracksAlbumsArtists}>
+                        onClick={searchSpotifyForTracksAlbumsArtists}
+                >
                     <i className="bi bi-search"></i>
                 </button>
             </div>
@@ -59,7 +61,9 @@ const HoedownSearch = () => {
                                     <div className="card-body p-0">
                                         <div className="card-title text-center text-truncate">
                                             <div className="fw-bold">{track.name}</div>
-                                            {track.artists[0].name}
+                                            {track.artists[0].name}<br/>
+{/*                                            <audio className="w-100" controls src={track.preview_url}>
+                                            </audio>*/}
                                         </div>
                                     </div>
                                 </Link>

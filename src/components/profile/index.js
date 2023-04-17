@@ -8,6 +8,9 @@ import {
 } from "../../services/users/users-thunks";
 import { useNavigate, useParams } from "react-router";
 import { findUserById } from "../../services/users/users-service";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import FollowersTabLabel from "./followers-tab-label";
+import FollowingTabLabel from "./following-tab-label";
 /*import { findLikesByUserId } from "../napster/likes-service";
 import {
     userFollowsUser,
@@ -59,6 +62,11 @@ const Profile = () => {
         loadScreen();
     }, [userId]);
 
+    const getNavPath = () => {
+        const urlSegments = window.location.href.split('/');
+        return urlSegments[urlSegments.length-1];
+    }
+
     return(<>{profile && <>
         {/* Banner image */}
         <img    alt="banner_picture" className="w-100"
@@ -89,10 +97,10 @@ const Profile = () => {
         </div>
 
         {/* Profile info (name, role, etc) */}
-        <h5 className="fw-bold pt-0 pb-0 mb-0">
+        <div className="fs-3 fw-bold pt-0 pb-0 mb-0">
             {profile.firstName+" "+profile.lastName}
             <span className="text-secondary"> &#183; {"@"+profile.username}</span>
-        </h5>
+        </div>
         <div className="d-flex pt-2 pb-2">
             <div className="wd-text-decoration-none text-secondary pe-3">
                 <i className="bi bi-person"></i>
@@ -108,30 +116,30 @@ const Profile = () => {
         </div>
 
         {/* Profile navigation tabs */}
-        <ul className="nav nav-tabs">
-            <li className="nav-item">
-                <Link to={`/profile/${profile._id}/liked-songs`} className={`nav-link`}>
-                Liked Songs
+        <ul className="nav nav-tabs nav-fill fs-5">
+            <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked artists">
+                <Link to={`/profile/${profile._id}/liked-artists`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-artists' ?'active':''}`}>
+                    <FontAwesomeIcon icon="fa-solid fa-person"/><span className="d-none d-xl-block ms-2">Liked Artists</span>
                 </Link>
             </li>
-            <li className="nav-item">
-                <Link to={`/profile/${profile._id}/liked-albums`} className={`nav-link`}>
-                    Liked Albums
+            <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked albums">
+                <Link to={`/profile/${profile._id}/liked-albums`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-albums' ?'active':''}`}>
+                    <FontAwesomeIcon icon="fa-solid fa-record-vinyl"/><span className="d-none d-xl-block ms-2">Liked Albums</span>
                 </Link>
             </li>
-            <li className="nav-item">
-                <Link to={`/profile/${profile._id}/liked-artists`} className={`nav-link`}>
-                    Liked Artists
+            <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked songs">
+                <Link to={`/profile/${profile._id}/liked-songs`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-songs' ?'active':''}`}>
+                    <FontAwesomeIcon icon="fa-solid fa-music"/><span className="d-none d-xl-block ms-2">Liked Songs</span>
                 </Link>
             </li>
-            <li className="nav-item">
-                <Link to={`/profile/${profile._id}/followers`} className={`nav-link`}>
-                    Followers
+            <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Followers">
+                <Link to={`/profile/${profile._id}/followers`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='followers' ?'active':''}`}>
+                    <FollowersTabLabel/>
                 </Link>
             </li>
-            <li className="nav-item">
-                <Link to={`/profile/${profile._id}/following`} className={`nav-link`}>
-                    Following
+            <li className="nav-item bg-light rounded-top" data-toggle="tooltip" title="Following">
+                <Link to={`/profile/${profile._id}/following`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='following' ?'active':''}`}>
+                    <FollowingTabLabel/>
                 </Link>
             </li>
         </ul>

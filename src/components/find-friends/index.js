@@ -1,26 +1,14 @@
-import React, {useEffect, useState} from "react";
-import whoArray from './who.json';
+import React, {useEffect} from "react";
 import FindFriendsListItem from "./find-friends-list-item";
-import "./index.css";
 import {useDispatch,useSelector} from "react-redux";
-import {
-    findAllUsersThunk
-} from "../../services/users/users-thunks";
+import {findAllUsersThunk} from "../../services/users/users-thunks";
 
 const FindFriendsList = () => {
-    let currentUser = useSelector((state) => state.users.currentUser);
-    let usersInitial = useSelector((state) => state.users.users);
+    let {currentUser,users,loading} = useSelector((state) => state.users);
     const dispatch = useDispatch();
 
-    const [users, setUsers] = useState(usersInitial);
-
-    const followUser = async () => {
-        //await userFollowsUser(currentUser._id, profile._id);
-    };
-
     const fetchUsers = async () => {
-        const response = await dispatch(findAllUsersThunk());
-        setUsers(response.payload);
+        await dispatch(findAllUsersThunk());
     };
 
     useEffect(() => {
@@ -30,13 +18,27 @@ const FindFriendsList = () => {
     return (
         <ul className="list-group">
             <li className="list-group-item">
-                <div className="col-11 position-relative mb-3">
-                    <input placeholder="Search Tuiter"
-                           className="form-control rounded-pill ps-5"/>
-                    <i className="bi bi-search position-absolute wd-nudge-up"></i>
+                <div className="d-flex mb-3 position-relative align-items-center">
+                    <input placeholder="Search users"
+                           className="form-control rounded-pill rounded-end ps-5"
+                           //value={search}
+                           //onChange={e => setSearch(e.target.value)}
+                    />
+                    <i className="bi bi-search position-absolute ps-3"></i>
+                    <button className="btn btn-primary rounded-pill rounded-start px-5"
+                            //onClick={searchSpotifyForTracksAlbumsArtists}
+                    >
+                        <i className="bi bi-search"></i>
+                    </button>
                 </div>
                 <h3>Who to follow</h3>
             </li>
+            {
+                loading &&
+                <li className="list-group-item">
+                    Loading users...
+                </li>
+            }
             {
                 users.map(who =>
                                  <FindFriendsListItem
