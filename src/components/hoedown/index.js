@@ -19,6 +19,8 @@ import HoedownSearch from "../hoedown-search";
 import TrackDetailsScreen from "../hoedown-search/TrackDetailsScreen";
 import store from "../../redux/store";
 import CurrentUserContext from "./current-user-context";
+import AlbumDetailsScreen from "../hoedown-search/AlbumDetailsScreen";
+import ArtistDetailsScreen from "../hoedown-search/ArtistDetailsScreen";
 
 function Hoedown() {
     return (
@@ -44,6 +46,8 @@ function Hoedown() {
                                     <Route path="search" element={<HoedownSearch/>}/>
                                     <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
                                     <Route path="track/:spotifyID" element={<TrackDetailsScreen/>}/>
+                                    <Route path="album/:spotifyID" element={<AlbumDetailsScreen/>}/>
+                                    <Route path="artist/:spotifyID" element={<ArtistDetailsScreen/>}/>
                                 </Routes>
                             </div>
                         </div>

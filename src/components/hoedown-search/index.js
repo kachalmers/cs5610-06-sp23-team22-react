@@ -26,7 +26,6 @@ const HoedownSearch = () => {
         if (search) {
             const response = await searchSpotify(search);
             setResults(response);
-            console.log(response);
             navigate(`/search/${search}`);
         } else {
             setResults({});
