@@ -9,9 +9,7 @@ export const findAllUsers = async () => {
 };
 
 export const findUserById = async (id) => {
-    console.log("ID: "+id);
     const response = await axios.get(`${USERS_API_URL}/${id}`);
-    console.log(response.data);
     return response.data;
 };
 

@@ -11,6 +11,10 @@ import { findUserById } from "../../services/users/users-service";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import FollowersTabLabel from "./followers-tab-label";
 import FollowingTabLabel from "./following-tab-label";
+import {findFollowsByFollowerId} from "../../services/follows/follows-service";
+import FindFriendsListItem from "../find-friends/find-friends-list-item";
+import Following from "./following";
+import Followers from "./followers";
 /*import { findLikesByUserId } from "../napster/likes-service";
 import {
     userFollowsUser,
@@ -27,11 +31,14 @@ const Profile = () => {
     const [follows, setFollows] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-/*    const fetchFollowing = async () => {
-        const following = await findFollowsByFollowerId(profile._id);
-        setFollowing(following);
+    const fetchFollowing = async () => {
+        if (profile===null) {
+        } else {
+            const following = await findFollowsByFollowerId(profile._id);
+            setFollowing(following);
+        }
     };
-    const fetchFollowers = async () => {
+/*    const fetchFollowers = async () => {
         const follows = await findFollowsByFollowedId(profile._id);
         setFollows(follows);
     };
@@ -52,9 +59,9 @@ const Profile = () => {
         setProfile(response.payload);
     };
     const loadScreen = async () => {
-        await fetchProfile();
+        let p = await fetchProfile();
+        //let f = await fetchFollowing();
 /*        await fetchLikes();
-        await fetchFollowing();
         await fetchFollowers();*/
     };
 
@@ -143,6 +150,10 @@ const Profile = () => {
                 </Link>
             </li>
         </ul>
+        <Routes>
+            <Route path={`/following`} element={<Following pid={profile._id} currentUser={currentUser}/>}/>
+            <Route path={`/followers`} element={<Followers pid={profile._id} currentUser={currentUser}/>}/>
+        </Routes>
     </>}</>)
 }
 export default Profile;

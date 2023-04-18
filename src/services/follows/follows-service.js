@@ -1,6 +1,8 @@
 import axios from "axios";
 const USERS_API = process.env.REACT_APP_API_BASE+"/users";
 
+const api = axios.create({ withCredentials: true });
+
 export const userTogglesFollow = async (followerId,followeeId) => {
     const response = await axios.put(
         `${USERS_API}/${followerId}/follows/${followeeId}`
@@ -23,11 +25,11 @@ export const userUnfollowsUser = async (followerId, followedId) => {
 };
 
 export const findFollowsByFollowedId = async (followed) => {
-    const response = await axios.get(`${USERS_API}/${followed}/followers`);
+    const response = await api.get(`${USERS_API}/${followed}/followers`);
     return response.data;
 };
 
 export const findFollowsByFollowerId = async (follower) => {
-    const response = await axios.get(`${USERS_API}/${follower}/followees`);
+    const response = await api.get(`${USERS_API}/${follower}/followees`);
     return response.data;
 };
