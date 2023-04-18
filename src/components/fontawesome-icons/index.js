@@ -12,13 +12,15 @@ import {
     faUsers,
     faHouse,
     faRecordVinyl,
-    faPerson
+    faPerson,
+    faHeart as fasHeart
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
     faNewspaper,
     faCircleCheck,
-    faCircle
+    faCircle,
+    faHeart as farHeart
 } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
@@ -39,5 +41,7 @@ library.add(
     faUserXmark,
     faMusic,
     faRecordVinyl,
-    faPerson
+    faPerson,
+    fasHeart,
+    farHeart
 )

@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { findSpotifyAlbum } from "./hoedown-service";
 import { useSelector } from "react-redux";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 function AlbumDetailsScreen() {
     const { spotifyID } = useParams();
     const [album,setAlbum] = useState({});
@@ -21,7 +22,6 @@ function AlbumDetailsScreen() {
 
     useEffect(() => {
         findAlbum().catch(console.error);
-        console.log(album);
     }, [spotifyID]);
 
     const msToTimeDisplay = (ms) => {
@@ -41,7 +41,18 @@ function AlbumDetailsScreen() {
                         </div>
                         <div className="col-8 col-lg-9">
                             <div>
-                                <div className="fs-3 text-truncate">{album.name}</div>
+                                <div className="d-flex justify-content-between">
+                                    <div className="fs-3 text-truncate col">{album.name}</div>
+                                    {/* If album is liked by user, display this... */}
+                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
+                                        <FontAwesomeIcon icon="fa-solid fa-heart"/>
+                                    </div>
+                                    {/* If album is not liked by user, display this... */}
+                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
+                                        <FontAwesomeIcon icon="fa-regular fa-heart"/>
+                                    </div>
+                                </div>
+
                                 <div className="text-truncate">
                                     {album.artists.map(
                                         artist => artist.name
@@ -79,13 +90,12 @@ function AlbumDetailsScreen() {
                                         {track.artists.map((artist,i) => {
                                             const length = track.artists.length;
                                             return (
-                                            <span key={i}>
-                                                <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
-                                                {
-                                                    i<length-1 && <>, </>
-                                                }
-                                            </span>
-                                        )})}
+                                                <span key={i}>
+                                                    <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
+                                                    { i<length-1 && <>, </> }
+                                                </span>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                                 {/*<div className="d-none d-xl-block col text-truncate">*/}

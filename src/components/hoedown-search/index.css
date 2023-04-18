@@ -3,3 +3,7 @@
     height: 150px; /* height of container */
     object-fit: cover;
 }
+
+.wd-width-150px {
+    width: 150px;
+}
