@@ -37,7 +37,11 @@ function AlbumDetailsScreen() {
                 <div className="list-group-item">
                     <div className="row">
                         <div className="col-4 col-lg-3">
-                            <img src={album.images[0].url} alt="Album Cover" className="w-100"/>
+                            {
+                                album.images && album.images[0] ?
+                                    <img src={album.images[0].url} alt="Album Cover" className="w-100"/>:
+                                    <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                            }
                         </div>
                         <div className="col-8 col-lg-9">
                             <div>

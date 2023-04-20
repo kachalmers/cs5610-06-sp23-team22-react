@@ -38,6 +38,11 @@ function TrackDetailsScreen() {
                 <div className="list-group-item">
                     <div className="row">
                         <div className="col-4 col-lg-3">
+                            {
+                                song.album.images && song.album.images[0] ?
+                                    <img src={song.album.images[0].url} alt="Song Cover" className="w-100"/>:
+                                    <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                            }
                             <img src={song.album.images[0].url} alt="Song Cover" className="w-100"/>
                         </div>
                         <div className="col-8 col-lg-9">
@@ -68,14 +73,15 @@ function TrackDetailsScreen() {
                                 <div className="fs-6 text-secondary row-cols-5">
                                     Time: {msToTimeDisplay(song.duration_ms)}
                                 </div>
-                                <div className="d-flex justify-content-between">
+                                <div>
                                     {song.preview_url !== null ?
-                                    <audio className="col" controls src={song.preview_url}></audio>
-                                    : <div className="d-flex justify-content-between">
-                                            <audio className="col" controls src={song.preview_url}></audio>
+                                        <audio className="w-100" controls src={song.preview_url}></audio>
+                                    : <div>
+                                            <span className="text-danger text-center align-items-center">Sample Not Available</span>
                                             <div>
-                                                <span className="text-danger align-items-center">Sample Not Available</span>
+                                                <audio className="w-100" controls src={song.preview_url}></audio>
                                             </div>
+
                                         </div>}
                                 </div>
                             </div>

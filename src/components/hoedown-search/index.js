@@ -61,7 +61,11 @@ const HoedownSearch = () => {
                                      <td key={track.id}>
                                          <Link to={`/track/${track.id}`} className="text-decoration-none">
                                              <div className="bg-white rounded">
-                                                 <img className="wd-thumbnail-150px rounded-top" src={track.album.images[0].url} alt="Album Cover"/>
+                                                 {
+                                                     track.album.images && track.album.images[0] ?
+                                                     <img className="wd-thumbnail-150px rounded-top" src={track.album.images[0].url} alt="Album Cover"/>:
+                                                         <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                                                 }
                                                  <div className="wd-width-150px text-center px-2">
                                                      <div className="fw-bold text-truncate">{track.name}</div>
                                                      <div className="text-truncate">{track.artists[0].name}</div>
@@ -90,7 +94,11 @@ const HoedownSearch = () => {
                                     <td key={album.id}>
                                          <Link to={`/album/${album.id}`} className="text-decoration-none">
                                              <div className="bg-white rounded">
-                                                 <img className="wd-thumbnail-150px rounded-top" src={album.images[0].url} alt="Album Cover"/>
+                                                 {
+                                                     album.images && album.images[0] ?
+                                                     <img className="wd-thumbnail-150px rounded-top" src={album.images[0].url} alt="Album Cover"/>:
+                                                     <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                                                 }
                                                  <div className="wd-width-150px text-center px-2">
                                                      <div className="fw-bold text-truncate">{album.name}</div>
                                                      <div className="text-truncate">{album.artists[0].name}</div>
@@ -119,7 +127,11 @@ const HoedownSearch = () => {
                                      <td key={artist.id}>
                                          <Link to={`/artist/${artist.id}`} className="text-decoration-none">
                                              <div className="bg-white rounded">
-                                                 <img className="wd-thumbnail-150px rounded-top" src={artist.images[0].url} alt="Album Cover"/>
+                                                 {
+                                                     artist.images && artist.images[0] ?
+                                                         <img className="wd-thumbnail-150px rounded-top" src={artist.images[0].url} alt="Album Cover"/>:
+                                                         <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                                                 }
                                                  <div className="wd-width-150px text-center px-2">
                                                      <div className="fw-bold text-truncate">{artist.name}</div>
                                                  </div>

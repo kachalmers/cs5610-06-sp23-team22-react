@@ -31,7 +31,11 @@ function ArtistDetailsScreen() {
                 <div className="list-group-item">
                     <div className="row">
                         <div className="col-4 col-lg-3">
-                            <img src={artist.images[0].url} alt="Album Cover" className="w-100"/>
+                            {
+                                artist.images && artist.images[0] ?
+                                <img src={artist.images[0].url} alt="Album Cover" className="w-100"/>:
+                                    <img src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover" className="w-100"/>
+                            }
                         </div>
                         <div className="col-8 col-lg-9">
                             <div className="d-flex justify-content-between">
