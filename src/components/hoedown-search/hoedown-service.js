@@ -54,9 +54,18 @@ export const findSpotifyAlbum = async (said) => {
 export const findSpotifyArtist = async (said) => {
     let token = await getToken();
     let searchParams = getSearchParams(token);
-    let results = await fetch('https://api.spotify.com/v1/artists/'+said,searchParams)
+    let artist = await fetch('https://api.spotify.com/v1/artists/'+said,searchParams)
         .then(response => response.json())
-    return results;
+    let tracks = await fetch ('https://api.spotify.com/v1/artists/'+artist.id+'/top-tracks?include_groups=track&market=US',searchParams)
+        .then(response => response.json())
+    let albums = await fetch ('https://api.spotify.com/v1/artists/'+artist.id+'/albums?include_groups=album&market=US',searchParams)
+        .then(response => response.json())
+    const fullReturn = {
+        tracks:tracks.tracks,
+        albums:albums.items,
+        artist:artist
+    }
+    return fullReturn;
 }
 
 export const searchSpotify = async (search) => {

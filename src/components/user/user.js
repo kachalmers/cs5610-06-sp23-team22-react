@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {userTogglesFollow} from "../../services/follows/follows-service";
+import {Link} from "react-router-dom";
 
 const User = ({who,currentUser}) => {
     const [user, setUser] = useState(who);
@@ -19,8 +20,10 @@ const User = ({who,currentUser}) => {
                         <img className="rounded-circle" height={40} src="https://media.istockphoto.com/id/532629379/vector/singing-cowboy-with-guitar.jpg?s=612x612&w=0&k=20&c=GY4MyNDgbwZdhHvPhRJ636EK0HW75PU5mLGw--TOYHc="/>
                     </div>
                     <div>
-                        <div className="fw-bold">{who.firstName} {who.lastName}</div>
-                        <div>@{who.username}</div>
+                        <Link to={`/profile/${who._id}`} className="text-decoration-none">
+                            <div className="fw-bold">{who.firstName} {who.lastName}</div>
+                            <div>@{who.username}</div>
+                        </Link>
                     </div>
                 </div>
                 <div className="float-right fw-bold">

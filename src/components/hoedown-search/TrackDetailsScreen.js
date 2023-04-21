@@ -3,7 +3,14 @@ import React, { useEffect, useState } from "react";
 import { findSpotifySong } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import ReviewList from "./review-list"
+import User from "../user/user";
+import * as likesService from "../../services/likes/likes-service"
+import * as commentsService from "../../services/comments/comments-service";
+import LikeButton from "./like-button";
+
 function TrackDetailsScreen() {
+    let {currentUser} = useSelector((state) => state.users);
     const { spotifyID } = useParams();
     const [song,setSong] = useState({});
 
@@ -20,9 +27,26 @@ function TrackDetailsScreen() {
         }
     }
 
+    const fetchLiked = async () => {
+        const like = await likesService.findTrackLikeByIds(currentUser.id,spotifyID)
+            .then(like => {
+                console.log("before ifelse in fetchliked"+like);
+                if (like !== {}) {
+                    console.log("if in fetchliked"+like);
+                    //setLikedByMe(true);
+                }
+                else {
+                    console.log("else in fetchliked"+like);
+                    //setLikedByMe(false);
+                };
+            })
+        console.log("after ifelse in fetchliked"+like);
+    }
+
     useEffect(() => {
         findSong().catch(console.error);
-        console.log(song)
+        console.log(currentUser);
+        //fetchLiked();
     }, [spotifyID]);
 
     const msToTimeDisplay = (ms) => {
@@ -43,52 +67,56 @@ function TrackDetailsScreen() {
                                     <img src={song.album.images[0].url} alt="Song Cover" className="w-100"/>:
                                     <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
                             }
-                            <img src={song.album.images[0].url} alt="Song Cover" className="w-100"/>
                         </div>
                         <div className="col-8 col-lg-9">
                             <div>
                                 <div className="d-flex justify-content-between">
                                     <div className="fs-3 fw-bold text-truncate col">{song.name}</div>
-                                    {/* If album is liked by user, display this... */}
-                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                        <FontAwesomeIcon icon="fa-solid fa-heart"/>
-                                    </div>
-                                    {/* If album is not liked by user, display this... */}
-                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                        <FontAwesomeIcon icon="fa-regular fa-heart"/>
-                                    </div>
+                                    {
+                                        currentUser && currentUser._id &&
+                                        <LikeButton currentUser={currentUser._id}
+                                                    spotifyId={spotifyID}
+                                                    track={song}
+                                        />
+                                    }
                                 </div>
-                                <div className="fs-4">
+                                <div className="text-truncate fs-4">
                                     {song.artists.map((artist,i) => {
+                                        const length = song.artists.length;
                                         return (
                                             <span key={i}>
-                                                    <span className="text-decoration-none">{artist.name}</span>
+                                                    <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
+                                                { i<length-1 && <>, </> }
                                                 </span>
                                         )
                                     })}
                                 </div>
-                                <div>
-                                    <div className="fs-6 text-secondary row-cols-5">Track No.{song.track_number}</div>
+                                <div className="text-truncate">
+                                    <Link to={`/album/${song.album.id}`} className="text-decoration-none">
+                                        {song.album.name}
+                                    </Link>
+                                </div>
+                                <div className="fs-6 text-secondary row-cols-5 text-truncate">
+                                    Track No. {song.track_number}
                                 </div>
                                 <div className="fs-6 text-secondary row-cols-5">
                                     Time: {msToTimeDisplay(song.duration_ms)}
                                 </div>
-                                <div>
-                                    {song.preview_url !== null ?
-                                        <audio className="w-100" controls src={song.preview_url}></audio>
-                                    : <div>
-                                            <span className="text-danger text-center align-items-center">Sample Not Available</span>
-                                            <div>
-                                                <audio className="w-100" controls src={song.preview_url}></audio>
-                                            </div>
-
-                                        </div>}
+                                <div className="mt-2">
+                                    {
+                                        song.preview_url === null &&
+                                        <div>
+                                            <span className="text-danger">Sample Not Available</span>
+                                        </div>
+                                    }
+                                    <audio className="w-100" controls src={song.preview_url}></audio>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <ReviewList reviewed_thing={song}/>
         </>}</>
     )
 }

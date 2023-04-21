@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import FindFriendsListItem from "./find-friends-list-item";
+import User from "../user/user";
 import {useDispatch,useSelector} from "react-redux";
 import {findAllUsersThunk} from "../../services/users/users-thunks";
 
@@ -41,7 +41,7 @@ const FindFriendsList = () => {
             }
             {
                 users.map(who =>
-                                 <FindFriendsListItem
+                                 <User
                                      key={who._id}
                                      who={who}
                                      currentUser={currentUser}

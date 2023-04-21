@@ -12,7 +12,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import FollowersTabLabel from "./followers-tab-label";
 import FollowingTabLabel from "./following-tab-label";
 import {findFollowsByFollowerId} from "../../services/follows/follows-service";
-import FindFriendsListItem from "../find-friends/find-friends-list-item";
 import Following from "./following";
 import Followers from "./followers";
 /*import { findLikesByUserId } from "../napster/likes-service";

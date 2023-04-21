@@ -99,12 +99,12 @@ function SignUp() {
             <div className="mb-3">
                 Role
                 <div className="form-check"
-                     onClick={(e) => {setRole("ARTIST")}}
+                     onClick={(e) => {setRole("CRITIC")}}
                 >
                     <input className="form-check-input" type="radio" name="flexRadioDefault"
                            id="artist"/>
                     <label className="form-check-label" htmlFor="artist">
-                        Artist
+                        Music critic
                     </label>
                 </div>
                 <div className="form-check"

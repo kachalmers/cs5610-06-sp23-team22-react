@@ -31,6 +31,16 @@ function AlbumDetailsScreen() {
         return `${minFloored}:${ sec<10 ? '0'+sec : sec }`;
     }
 
+    const displayReleaseDate = (rd) => {
+        const dateArray = rd.split('-');
+        let months = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+        const year = dateArray[0]
+        const month = months[+dateArray[1]]
+        const date = dateArray[2]
+        return date + ' ' + month + ' ' + year;
+    }
+
     return(
         <>{spotifyID && album && album.name && <>
             <div className="list-group">
@@ -40,13 +50,13 @@ function AlbumDetailsScreen() {
                             {
                                 album.images && album.images[0] ?
                                     <img src={album.images[0].url} alt="Album Cover" className="w-100"/>:
-                                    <img className="wd-thumbnail-150px rounded-top" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
+                                    <img className="w-100" src={"https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"} alt="Album Cover"/>
                             }
                         </div>
                         <div className="col-8 col-lg-9">
                             <div>
                                 <div className="d-flex justify-content-between">
-                                    <div className="fs-3 text-truncate col">{album.name}</div>
+                                    <div className="fs-3 fw-bold text-truncate col">{album.name}</div>
                                     {/* If album is liked by user, display this... */}
                                     <div className="btn btn-danger rounded-pill d-flex align-items-center">
                                         <FontAwesomeIcon icon="fa-solid fa-heart"/>
@@ -56,13 +66,18 @@ function AlbumDetailsScreen() {
                                         <FontAwesomeIcon icon="fa-regular fa-heart"/>
                                     </div>
                                 </div>
-
-                                <div className="text-truncate">
-                                    {album.artists.map(
-                                        artist => artist.name
-                                    ).join(", ")}
+                                <div className="text-truncate fs-4">
+                                    {album.artists.map((artist,i) => {
+                                        const length = album.artists.length;
+                                        return (
+                                            <span key={i}>
+                                                    <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
+                                                { i<length-1 && <>, </> }
+                                                </span>
+                                        )
+                                    })}
                                 </div>
-                                <div className="text-secondary text-truncate">{album.release_date}</div>
+                                <div className="text-secondary text-truncate">{displayReleaseDate(album.release_date)}</div>
                                 <div className="text-secondary text-truncate">{album.label}</div>
                             </div>
                             <div className="mt-4 fs-6 text-secondary text-truncate">
@@ -78,7 +93,6 @@ function AlbumDetailsScreen() {
                     <div className="row">
                         <div className="col-1">#</div>
                         <div className="col">Title</div>
-                        {/*<div className="d-none d-xl-block col">Artist</div>*/}
                         <div className="d-none d-md-block col-md-2">Time</div>
                         <div className="col col-lg-4 col-xl-3">Sample</div>
                     </div>
@@ -102,7 +116,6 @@ function AlbumDetailsScreen() {
                                         })}
                                     </div>
                                 </div>
-                                {/*<div className="d-none d-xl-block col text-truncate">*/}
 
                                 <div className="d-none d-md-block col-md-2">
                                     {msToTimeDisplay(track.duration_ms)}

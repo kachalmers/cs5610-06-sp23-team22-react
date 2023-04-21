@@ -13,7 +13,8 @@ import {
     faHouse,
     faRecordVinyl,
     faPerson,
-    faHeart as fasHeart
+    faHeart as fasHeart,
+    faCertificate
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
@@ -43,5 +44,6 @@ library.add(
     faRecordVinyl,
     faPerson,
     fasHeart,
-    farHeart
+    farHeart,
+    faCertificate
 )

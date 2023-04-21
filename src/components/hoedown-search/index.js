@@ -68,7 +68,17 @@ const HoedownSearch = () => {
                                                  }
                                                  <div className="wd-width-150px text-center px-2">
                                                      <div className="fw-bold text-truncate">{track.name}</div>
-                                                     <div className="text-truncate">{track.artists[0].name}</div>
+                                                     <div className="text-truncate">
+                                                         {track.artists.map((artist,i) => {
+                                                             const length = track.artists.length;
+                                                             return (
+                                                                 <span key={i}>
+                                                                     <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
+                                                                        { i<length-1 && <>, </> }
+                                                                 </span>
+                                                             )
+                                                         })}
+                                                     </div>
                                                  </div>
                                              </div>
                                          </Link>
@@ -101,7 +111,17 @@ const HoedownSearch = () => {
                                                  }
                                                  <div className="wd-width-150px text-center px-2">
                                                      <div className="fw-bold text-truncate">{album.name}</div>
-                                                     <div className="text-truncate">{album.artists[0].name}</div>
+                                                     <div className="text-truncate">
+                                                         {album.artists.map((artist,i) => {
+                                                             const length = album.artists.length;
+                                                             return (
+                                                                 <span key={i}>
+                                                                     <Link to={`/artist/${artist.id}`} className="text-decoration-none">{artist.name}</Link>
+                                                                     { i<length-1 && <>, </> }
+                                                                 </span>
+                                                             )
+                                                         })}
+                                                     </div>
                                                  </div>
                                              </div>
                                          </Link>
