@@ -27,3 +27,10 @@ export const findLikesOfUserFollowees = async (userId) => {
     );
     return response.data;
 }
+
+export const updateLike = async (likeId,like) => {
+    const response = await axios.put(
+        `${API}/likes/${likeId}`,like
+    )
+    return response.data;
+}

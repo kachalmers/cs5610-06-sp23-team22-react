@@ -21,6 +21,12 @@ const NavigationSidebar = () => {
             iconClassName: "fa-solid fa-house"
         },
         {
+            label: 'Search',
+            link: '/search',
+            activePaths: ['search'],
+            iconClassName: "fa-solid fa-music"
+        },
+        {
             label: 'Profile',
             link: '/profile',
             activePaths: ['profile','edit-profile'],
@@ -31,12 +37,6 @@ const NavigationSidebar = () => {
             link: '/find-friends',
             activePaths: ['find-friends'],
             iconClassName: "fa-solid fa-users"
-        },
-        {
-            label: 'Search',
-            link: '/search',
-            activePaths: ['search'],
-            iconClassName: "fa-solid fa-music"
         }
     ]
     return (

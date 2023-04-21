@@ -1,8 +1,5 @@
 import {useSelector} from "react-redux";
-import FeedItem from "./feed-item";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React, {useEffect, useState} from "react";
-import {findLikesOfUserFollowees} from "../../services/likes/likes-service";
 import FeedList from "./feed-list"
 
 const Feed = () => {
@@ -11,8 +8,9 @@ const Feed = () => {
     return(
         <>
             {
-                currentUser && currentUser._id &&
-                <FeedList currentUser={currentUser._id}/>
+                currentUser && currentUser._id ?
+                <FeedList currentUser={currentUser}/>
+                : <div className="fs-3">Please log in to view your feed!</div>
             }
         </>
     )

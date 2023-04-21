@@ -1,14 +1,13 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React, {useEffect, useState} from "react";
 import * as likesService from "../../services/likes/likes-service";
-import {userTogglesFollow} from "../../services/follows/follows-service";
 
 function LikeButton({currentUser,spotifyId,track}) {
     const [likedByMe,setLikedByMe] = useState(false);
 
     const fetchLiked = async () => {
-        const like = await likesService.findTrackLikeByIds(currentUser,spotifyId)
-        if (!like.userId) {
+        const newLike = await likesService.findTrackLikeByIds(currentUser,spotifyId)
+        if (!newLike.userId) {
             setLikedByMe(false);
         } else {
             setLikedByMe(true);
