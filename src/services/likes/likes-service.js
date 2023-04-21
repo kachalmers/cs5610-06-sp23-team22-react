@@ -20,3 +20,10 @@ export const toggleTrackLike = async (userId, spotifyId, track) => {
     );
     return response.data;
 };
+
+export const findLikesOfUserFollowees = async (userId) => {
+    const response = await axios.get(
+        `${API}/users/${userId}/followees/likes`
+    );
+    return response.data;
+}

@@ -27,26 +27,8 @@ function TrackDetailsScreen() {
         }
     }
 
-    const fetchLiked = async () => {
-        const like = await likesService.findTrackLikeByIds(currentUser.id,spotifyID)
-            .then(like => {
-                console.log("before ifelse in fetchliked"+like);
-                if (like !== {}) {
-                    console.log("if in fetchliked"+like);
-                    //setLikedByMe(true);
-                }
-                else {
-                    console.log("else in fetchliked"+like);
-                    //setLikedByMe(false);
-                };
-            })
-        console.log("after ifelse in fetchliked"+like);
-    }
-
     useEffect(() => {
         findSong().catch(console.error);
-        console.log(currentUser);
-        //fetchLiked();
     }, [spotifyID]);
 
     const msToTimeDisplay = (ms) => {
