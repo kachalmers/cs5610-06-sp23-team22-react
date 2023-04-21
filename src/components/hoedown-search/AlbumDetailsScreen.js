@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { findSpotifyAlbum } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import LikeButton from "./like-button-album";
 import Review from "./review";
 import ReviewList from "./review-list";
 function AlbumDetailsScreen() {
+    let {currentUser} = useSelector((state) => state.users);
     const { spotifyID } = useParams();
     const [album,setAlbum] = useState({});
 
@@ -59,14 +61,13 @@ function AlbumDetailsScreen() {
                             <div>
                                 <div className="d-flex justify-content-between">
                                     <div className="fs-3 fw-bold text-truncate col">{album.name}</div>
-                                    {/* If album is liked by user, display this... */}
-                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                        <FontAwesomeIcon icon="fa-solid fa-heart"/>
-                                    </div>
-                                    {/* If album is not liked by user, display this... */}
-                                    <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                        <FontAwesomeIcon icon="fa-regular fa-heart"/>
-                                    </div>
+                                    {
+                                        currentUser && currentUser._id &&
+                                        <LikeButton currentUser={currentUser._id}
+                                                    spotifyId={spotifyID}
+                                                    album={album}
+                                        />
+                                    }
                                 </div>
                                 <div className="text-truncate fs-4">
                                     {album.artists.map((artist,i) => {
