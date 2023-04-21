@@ -12,18 +12,22 @@ function SignUp() {
     const [role,setRole] = useState("USER");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const register = () => {
+    const register = async () => {
         try {
-            dispatch(registerThunk(
+            const response = await dispatch(registerThunk(
                 { firstName, lastName, email, username, password, role})
             );
-            navigate("/profile");
+            if (response.payload === undefined) {
+                throw new Error();
+            } else {
+                navigate("/profile");
+            }
         } catch (err) {
             console.log(err);
         }
     };
     return (
-        <form>
+        <>
             <h3>Sign Up</h3>
 
             <div className="form-group mb-3">
@@ -127,7 +131,7 @@ function SignUp() {
             <p className="forgot-password text-right">
                 Already registered? <a href="/login">Sign in</a>
             </p>
-        </form>
+        </>
     )
 }
 export default SignUp;

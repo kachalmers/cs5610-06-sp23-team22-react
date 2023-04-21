@@ -4,6 +4,7 @@ import { findSpotifyArtist } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Review from "./review";
+import ReviewList from "./review-list";
 
 function ArtistDetailsScreen() {
     const { spotifyID } = useParams();
@@ -128,9 +129,7 @@ function ArtistDetailsScreen() {
                     </div>
                 </div>
             </div>
-            <Review>
-
-            </Review>
+            <ReviewList reviewed_thing={results.artist}/>
         </>}</>
     )
 }

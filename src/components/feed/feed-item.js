@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as likesService from "../../services/likes/likes-service";
-import * as commentsService from "../../services/comments/comments-service";
 
 const FeedItem = ({item,currentUserId}) => {
     const [editing,setEditing]=useState(false);
@@ -27,7 +26,6 @@ const FeedItem = ({item,currentUserId}) => {
         if (item.artistId) {
             newItem.artistId = item.artistId._id
         }
-        console.log(newItem);
         await likesService.updateLike(item._id, newItem);
         setEditing(false);
     }

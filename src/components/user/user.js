@@ -21,7 +21,13 @@ const User = ({who,currentUser}) => {
                     </div>
                     <div>
                         <Link to={`/profile/${who._id}`} className="text-decoration-none">
-                            <div className="fw-bold">{who.firstName} {who.lastName}</div>
+                            <div className="fw-bold">
+                                {who.firstName} {who.lastName}
+                                {
+                                    who.role === "CRITIC" &&
+                                    <span className="ms-1"><FontAwesomeIcon icon="fa-solid fa-certificate"/></span>
+                                }
+                            </div>
                             <div>@{who.username}</div>
                         </Link>
                     </div>

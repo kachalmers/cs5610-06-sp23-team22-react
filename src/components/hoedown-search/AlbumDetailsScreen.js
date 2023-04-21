@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { findSpotifyAlbum } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Review from "./review";
+import ReviewList from "./review-list";
 function AlbumDetailsScreen() {
     const { spotifyID } = useParams();
     const [album,setAlbum] = useState({});
@@ -130,6 +132,7 @@ function AlbumDetailsScreen() {
                     )})
                 }
             </div>
+            <ReviewList reviewed_thing={album}/>
         </>}</>
     )
 }

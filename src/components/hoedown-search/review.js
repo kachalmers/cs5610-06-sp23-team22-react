@@ -2,14 +2,42 @@ import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {userTogglesFollow} from "../../services/follows/follows-service";
 import {Link} from "react-router-dom";
+import * as commentsService from "../../services/comments/comments-service";
+import {useSelector} from "react-redux";
 
-const Review = ({thisReview,currentUser}) => {
-    const [review, setReview] = useState(thisReview);
+const Review = ({review,currentUserId}) => {
+    let {currentUser} = useSelector((state) => state.users);
+    const [reviewText, setReviewText] = useState(review.text);
+    const [editing,setEditing]=useState(false);
+
+    const startEditingCommentHandler = (originalComment) => {
+        setEditing(true);
+        setReviewText(originalComment);
+    };
+
+    const updateCommentHandler = async () => {
+        let newReview = {};
+        newReview.date = review.date;
+        newReview.text = reviewText;
+        newReview.userId = review.userId._id;
+        if (review.trackId) {
+            newReview.trackId = review.trackId._id
+        }
+        if (review.albumId) {
+            newReview.albumId = review.albumId._id
+        }
+        if (review.artistId) {
+            newReview.artistId = review.artistId._id
+        }
+        console.log(newReview);
+        await commentsService.updateComment(review._id, newReview);
+        setEditing(false);
+    }
 
     const displayTime = () => {
         const now = new Date();
         const nowMs = now.getTime();
-        const date = new Date(thisReview.date);
+        const date = new Date(review.date);
         const reviewDateMs = date.getTime();
         const ageMs = nowMs - reviewDateMs;
         const ageSec = ageMs/1000.0;
@@ -40,25 +68,68 @@ const Review = ({thisReview,currentUser}) => {
         <>
             { review &&
                 <div className="list-group-item">
+                    {console.log("REVIEW")}
+                    {console.log(review.userId)}
                     <div className="d-flex justify-content-between">
-                        {
-                            review && review.userId &&
-                            <Link to={`/profile/${review.userId._id}`}
-                                  className="text-decoration-none fw-bold text-truncate">
-                                {review.userId.firstName + " " + review.userId.lastName}
-                                <span className="text-secondary"> &#183; {"@"
-                                                                          + review.userId.username} </span>
-                                <FontAwesomeIcon icon="fa-solid fa-certificate"/>
-                            </Link>
-                        }
                         <div>
-                            <div className="text-secondary text-nowrap ms-2">
-                                {displayTime()}
-                            </div>
+                            {
+                                review && review.userId &&
+                                <Link to={`/profile/${review.userId._id}`}
+                                      className="text-decoration-none fw-bold">
+                                    {
+                                        currentUser && review.userId._id===currentUser._id ?
+                                        <span className="me-1">You</span>
+                                        : <span className="me-1">{review.userId.firstName + " " + review.userId.lastName}</span>
+                                    }
+                                    <span className="text-secondary me-1">{" \u00B7 @"+review.userId.username}</span>
+                                    {
+                                        review.userId.role === "CRITIC" &&
+                                        <span className="me-1"><FontAwesomeIcon icon="fa-solid fa-certificate"/></span>
+                                    }
+                                </Link>
+                            }
+                        </div>
+                        <div>
+                            <span>
+                                <span className="text-secondary text-nowrap ms-2">
+                                    {displayTime()}
+                                </span>
+                                {
+                                    currentUser && review.userId._id===currentUser._id && !editing &&
+                                    <span className="ms-2 btn btn-sm btn-secondary"
+                                          onClick={() => startEditingCommentHandler(review.text)}
+                                    >
+                                        <FontAwesomeIcon icon="fa-solid fa-pen-to-square"/>
+                                    </span>
+                                }
+                                {
+                                    editing &&
+                                    <span className="ms-2 btn btn-sm btn-primary"
+                                          onClick={() => updateCommentHandler()}
+                                    >
+                                        <FontAwesomeIcon icon="fa-solid fa-floppy-disk"/>
+                                    </span>
+                                }
+                            </span>
                         </div>
                     </div>
                     <div>
-                        {review.text}
+                        {
+                            !editing && reviewText!=='' && <>{reviewText}</>
+                        }
+                        {
+                            editing &&
+                            <textarea
+                                type="text-area"
+                                className="form-control"
+                                rows="2"
+                                placeholder={`Tell us what you thought!`}
+                                value={reviewText}
+                                onChange={(e) => {
+                                    setReviewText(e.target.value);
+                                }}
+                            />
+                        }
                     </div>
                 </div>
             }

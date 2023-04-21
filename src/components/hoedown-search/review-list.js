@@ -8,39 +8,96 @@ const ReviewList = ({reviewed_thing}) => {
     const [reviews, setReviews] = useState([]);
     const [review,setReview] = useState('');
 
+    const prepareTrackForService = () => {
+        let track = {
+            spotifyId: reviewed_thing.id,
+            name: reviewed_thing.name,
+        }
+        if (reviewed_thing.album.images[0]) {
+            track.imageUrl = reviewed_thing.album.images[0].url
+        }
+        let reviewedThingArtists = reviewed_thing.artists;
+        let artists = reviewedThingArtists.map((artist) => {
+            let spotifyId = artist.id;
+            let name = artist.name;
+            return {spotifyId,name};
+        });
+        track.artists = artists;
+        return track;
+    }
+
+    const prepareAlbumForService = () => {
+        let album = {
+            spotifyId: reviewed_thing.id,
+            name: reviewed_thing.name,
+        }
+        if (reviewed_thing.images[0]) {
+            album.imageUrl = reviewed_thing.images[0].url
+        }
+        let reviewedThingArtists = reviewed_thing.artists;
+        let artists = reviewedThingArtists.map((artist) => {
+            let spotifyId = artist.id;
+            let name = artist.name;
+            return {spotifyId,name};
+        });
+        album.artists = artists;
+        return album;
+    }
+
+    const prepareArtistForService = () => {
+        let artist = {
+            spotifyId: reviewed_thing.id,
+            name: reviewed_thing.name,
+        }
+        if (reviewed_thing.images[0]) {
+            artist.imageUrl = reviewed_thing.images[0].url
+        }
+        return artist;
+    }
+
     const prepareReviewForService = () => {
         let reviewToSend = {text:review};
         if (reviewed_thing.type === "track") {
-            let track = {
-                spotifyId: reviewed_thing.id,
-                name: reviewed_thing.name,
-                imageUrl: reviewed_thing.album.images[0].url
-            }
-            if (reviewed_thing.album.images[0]) {
-                track.imageUrl = reviewed_thing.album.images[0].url
-            }
-            let reviewedThingArtists = reviewed_thing.artists;
-            let artists = reviewedThingArtists.map((artist) => {
-                let spotifyId = artist.id;
-                let name = artist.name;
-                return {spotifyId,name};
-            });
-            track.artists = artists;
+            let track = prepareTrackForService();
             reviewToSend.track=track;
+        } else if (reviewed_thing.type === "album") {
+            let album = prepareAlbumForService();
+            reviewToSend.album=album;
+        } else if (reviewed_thing.type === "artist") {
+            let artist = prepareArtistForService();
+            reviewToSend.artist=artist;
         }
         return reviewToSend;
     }
 
     const fetchReviews = async () => {
-        return commentsService.findReviewsByTrack(reviewed_thing.id).then(reviews => { setReviews(reviews) })
+        if (reviewed_thing.type === "track") {
+            return commentsService.findReviewsByTrack(reviewed_thing.id).then(reviews => {
+                setReviews(reviews)
+            })
+        } else if (reviewed_thing.type === "album") {
+            return commentsService.findReviewsByAlbum(reviewed_thing.id).then(reviews => {
+                setReviews(reviews);
+            })
+        } else if (reviewed_thing.type === "artist") {
+            return commentsService.findReviewsByArtist(reviewed_thing.id).then(reviews => {
+                setReviews(reviews);
+            })
+        }
     }
 
-    const createTrackReview = () => {
+    const createReview = async () => {
         if (review === '') {
             alert("Cannot post empty review!")
         } else {
             let reviewToSend = prepareReviewForService();
-            commentsService.createTrackReview(currentUser._id, reviewed_thing.id,reviewToSend).then(fetchReviews);
+            if (reviewed_thing.type === "track") {
+                commentsService.createTrackReview(currentUser._id, reviewed_thing.id,reviewToSend).then(fetchReviews);
+            } else if (reviewed_thing.type === "album") {
+                commentsService.createAlbumReview(currentUser._id, reviewed_thing.id,reviewToSend).then(fetchReviews);
+            } else if (reviewed_thing.type === "artist") {
+                commentsService.createArtistReview(currentUser._id, reviewed_thing.id,reviewToSend).then(fetchReviews);
+            }
             setReview("");
         }
     }
@@ -67,7 +124,7 @@ const ReviewList = ({reviewed_thing}) => {
                         />
                         <div>
                             <button className="btn btn-primary rounded-pill px-3"
-                                     onClick={createTrackReview}
+                                     onClick={createReview}
                             >
                                 Post
                             </button>
@@ -80,8 +137,7 @@ const ReviewList = ({reviewed_thing}) => {
                 reviews.map(review =>
                                 <Review
                                     key={review._id}
-                                    thisReview={review}
-                                    //currentUser={currentUser}
+                                    review={review}
                                 />
                 )
             }

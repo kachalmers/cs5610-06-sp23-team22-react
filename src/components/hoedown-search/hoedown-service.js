@@ -30,7 +30,6 @@ export const searchSpotifySongs = async (search) => {
     let searchParams = getSearchParams(token);
     let results = await fetch ('https://api.spotify.com/v1/search?q='+search+'&type=track',searchParams)
         .then(response => response.json())
-    console.log(results);
     return results.tracks.items;
 }
 
@@ -39,7 +38,6 @@ export const findSpotifySong = async (stid) => {
     let searchParams = getSearchParams(token);
     let results = await fetch('https://api.spotify.com/v1/tracks/'+stid,searchParams)
         .then(response => response.json())
-    console.log(results);
     return results;
 }
 
@@ -82,6 +80,5 @@ export const searchSpotify = async (search) => {
         albums:albums.albums.items,
         artists:artists.artists.items
     }
-    console.log(fullReturn);
     return fullReturn;
 }
