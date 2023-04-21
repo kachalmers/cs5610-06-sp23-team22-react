@@ -1,12 +1,12 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React, {useEffect, useState} from "react";
-import * as likesService from "../../services/likes/album-likes-service";
+import * as likesService from "../../services/likes/artist-likes-service";
 
-function LikeButton({currentUser,spotifyId,album}) {
+function LikeButton({currentUser,spotifyId,artist}) {
     const [likedByMe,setLikedByMe] = useState(false);
 
     const fetchLiked = async () => {
-        const newLike = await likesService.findAlbumLikeByIds(currentUser,spotifyId)
+        const newLike = await likesService.findArtistLikeByIds(currentUser,spotifyId)
         if (!newLike.userId) {
             setLikedByMe(false);
         } else {
@@ -14,24 +14,24 @@ function LikeButton({currentUser,spotifyId,album}) {
         }
     }
 
-    const prepareAlbumForService = () => {
-        let albumToSend = {
-            spotifyId: album.id,
-            name: album.name,
-            imageUrl: album.images[0].url
+    const prepareArtistForService = () => {
+        let artistToSend = {
+            spotifyId: artist.id,
+            name: artist.name,
+            imageUrl: artist.images[0].url
         }
-        let artists = album.artists.map((artist) => {
+        let artists = artist.artists.map((artist) => {
             let spotifyId = artist.id;
             let name = artist.name;
             return {spotifyId,name};
         });
-        albumToSend.artists = artists;
-        return albumToSend;
+        artistToSend.artists = artists;
+        return artistToSend;
     }
 
     const toggleLike = async () => {
-        let albumToSend = prepareAlbumForService();
-        await likesService.toggleAlbumLike(currentUser,spotifyId,albumToSend)
+        let artistToSend = prepareArtistForService();
+        await likesService.toggleArtistLike(currentUser,spotifyId,artistToSend)
         let newLikedByMe = !likedByMe;
         setLikedByMe(newLikedByMe);
     }

@@ -4,8 +4,10 @@ import { findSpotifyArtist } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Review from "./review";
+import LikeButton from "./like-button-artist";
 
 function ArtistDetailsScreen() {
+    let {currentUser} = useSelector((state) => state.users);
     const { spotifyID } = useParams();
     const [results,setResults] = useState({})
 
@@ -40,15 +42,14 @@ function ArtistDetailsScreen() {
                         </div>
                         <div className="col-8 col-lg-9">
                             <div className="d-flex justify-content-between">
-                                <div className="fs-3 text-truncate fw-bold">{results.artist.name}</div>
-                                {/* If artist is liked by user, display this... */}
-                                <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                    <FontAwesomeIcon icon="fa-solid fa-heart"/>
-                                </div>
-                                {/* If artist is not liked by user, display this... */}
-                                <div className="btn btn-danger rounded-pill d-flex align-items-center">
-                                    <FontAwesomeIcon icon="fa-regular fa-heart"/>
-                                </div>
+                                <div className="fs-3 fw-bold text-truncate col">{results.artist.name}</div>
+                                {
+                                    currentUser && currentUser._id &&
+                                    <LikeButton currentUser={currentUser._id}
+                                                spotifyId={spotifyID}
+                                                artist={results.artist}
+                                    />
+                                }
                             </div>
                             <div>{results.artist.followers.total} Followers</div>
                             {results.artist.genres.map((genre,i) => {
