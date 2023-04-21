@@ -18,14 +18,11 @@ function LikeButton({currentUser,spotifyId,artist}) {
         let artistToSend = {
             spotifyId: artist.id,
             name: artist.name,
-            imageUrl: artist.images[0].url
         }
-        let artists = artist.artists.map((artist) => {
-            let spotifyId = artist.id;
-            let name = artist.name;
-            return {spotifyId,name};
-        });
-        artistToSend.artists = artists;
+        if (artist.images[0]) {
+            artistToSend.imageUrl = artist.images[0].url
+        }
+        console.log(artistToSend);
         return artistToSend;
     }
 
