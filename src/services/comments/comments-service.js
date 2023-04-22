@@ -58,3 +58,10 @@ export const deleteComment = async (commentId) => {
     )
     return response.data;
 }
+
+export const getCommentsByUserId = async (userId) => {
+    const response = await axios.get(
+        `${API}/users/${userId}/comments`
+    )
+    return response.data;
+}

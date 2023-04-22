@@ -17,6 +17,7 @@ import Followers from "./followers";
 import ArtistLikes from "./artist-likes";
 import AlbumLikes from "./album-likes";
 import TrackLikes from "./track-likes";
+import ReviewsProfile from "./reviews-profile";
 
 const Profile = () => {
     const { userId } = useParams();
@@ -109,20 +110,34 @@ const Profile = () => {
         </div>
 
         {/* Profile navigation tabs */}
-        <ul className="nav nav-tabs nav-fill fs-5">
+        <ul className="nav nav-tabs nav-fill fs-5 text-nowrap">
+            {
+                profile.role==="CRITIC" &&
+                <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip"
+                    title="Reviews">
+                    <Link to={`/profile/${profile._id}/reviews`}
+                          className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()
+                                                                                                  === 'reviews'
+                                                                                                  ? 'active'
+                                                                                                  : ''}`}>
+                        <FontAwesomeIcon icon="fa-solid fa-comment"/><span
+                        className="d-none d-xl-block ms-2">Reviews</span>
+                    </Link>
+                </li>
+            }
             <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked artists">
                 <Link to={`/profile/${profile._id}/liked-artists`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-artists' ?'active':''}`}>
-                    <FontAwesomeIcon icon="fa-solid fa-person"/><span className="d-none d-xl-block ms-2">Liked Artists</span>
+                    <FontAwesomeIcon icon="fa-solid fa-person"/><span className="d-none d-xl-block ms-2">Artists</span>
                 </Link>
             </li>
             <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked albums">
                 <Link to={`/profile/${profile._id}/liked-albums`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-albums' ?'active':''}`}>
-                    <FontAwesomeIcon icon="fa-solid fa-record-vinyl"/><span className="d-none d-xl-block ms-2">Liked Albums</span>
+                    <FontAwesomeIcon icon="fa-solid fa-record-vinyl"/><span className="d-none d-xl-block ms-2">Albums</span>
                 </Link>
             </li>
             <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Liked songs">
                 <Link to={`/profile/${profile._id}/liked-songs`} className={`nav-link d-flex align-items-center justify-content-center ${getNavPath()==='liked-songs' ?'active':''}`}>
-                    <FontAwesomeIcon icon="fa-solid fa-music"/><span className="d-none d-xl-block ms-2">Liked Songs</span>
+                    <FontAwesomeIcon icon="fa-solid fa-music"/><span className="d-none d-xl-block ms-2">Songs</span>
                 </Link>
             </li>
             <li className="nav-item bg-light rounded-top me-1" data-toggle="tooltip" title="Followers">
@@ -137,6 +152,7 @@ const Profile = () => {
             </li>
         </ul>
         <Routes>
+            <Route path={`/reviews`} element={<ReviewsProfile pid={profile._id}/>}/>
             <Route path={`/following`} element={<Following pid={profile._id} currentUser={currentUser}/>}/>
             <Route path={`/followers`} element={<Followers pid={profile._id} currentUser={currentUser}/>}/>
             <Route path={`/liked-artists`} element={<ArtistLikes pid={profile._id}/>}/>

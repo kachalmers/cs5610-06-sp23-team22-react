@@ -4,7 +4,7 @@ import { findSpotifyAlbum } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import LikeButton from "./like-button-album";
-import Review from "./review";
+import Review from "../review/review";
 import ReviewList from "./review-list";
 function AlbumDetailsScreen() {
     let {currentUser} = useSelector((state) => state.users);

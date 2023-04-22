@@ -18,7 +18,8 @@ import {
     faPenToSquare,
     faBan,
     faFloppyDisk,
-    faTrash
+    faTrash,
+    faComment
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
@@ -53,5 +54,6 @@ library.add(
     faPenToSquare,
     faBan,
     faFloppyDisk,
-    faTrash
+    faTrash,
+    faComment
 )

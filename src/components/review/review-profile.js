@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {userTogglesFollow} from "../../services/follows/follows-service";
 import {Link} from "react-router-dom";
 import * as commentsService from "../../services/comments/comments-service";
 import {useSelector} from "react-redux";
 
-const Review = ({originalReview,currentUserId}) => {
+const ReviewProfile = ({originalReview}) => {
     let {currentUser} = useSelector((state) => state.users);
     const [review,setReview] = useState(originalReview)
     const [reviewText, setReviewText] = useState(review.text);
@@ -75,30 +74,89 @@ const Review = ({originalReview,currentUserId}) => {
 
     return(
         <>
+            {console.log(review)}
             { review && !review.deleted &&
                 <div className="list-group-item">
-                    {console.log("REVIEW")}
-                    {console.log(review.userId)}
                     <div className="d-flex justify-content-between">
                         <div>
+                            <span>
+                                {
+                                    review && review.userId &&
+                                    <span className="fw-bold">
+                                        {
+                                            currentUser && review.userId._id===currentUser._id ?
+                                            <span className="me-1">You</span>
+                                            : <span className="me-1">{review.userId.firstName}</span>
+                                        }
+                                    </span>
+                                }
+                            </span>
+                            <span className="me-1">reviewed</span>
                             {
-                                review && review.userId &&
-                                <Link to={`/profile/${review.userId._id}`}
-                                      className="text-decoration-none fw-bold">
-                                    {
-                                        currentUser && review.userId._id===currentUser._id ?
-                                        <span className="me-1">You</span>
-                                        : <span className="me-1">{review.userId.firstName + " " + review.userId.lastName}</span>
-                                    }
-                                    <span className="text-secondary me-1">{" \u00B7 @"+review.userId.username}</span>
-                                    {
-                                        review.userId.role === "CRITIC" &&
-                                        <span className="me-1"><FontAwesomeIcon icon="fa-solid fa-certificate"/></span>
-                                    }
-                                </Link>
+                                review.trackId &&
+                                <span className="me-1">the song</span>
+                            }
+                            {
+                                review.albumId &&
+                                <span className="me-1">the album</span>
+                            }
+                            {
+                                review.artistId &&
+                                <span className="me-1">the artist</span>
+                            }
+                            {
+                                review.trackId &&
+                                <>
+                                <span>
+                                    <Link className="me-1 text-decoration-none fw-bold"
+                                          to={`/track/${review.trackId.spotifyId}`}>{review.trackId.name}</Link>
+                                </span>
+                                    <span className="me-1">by</span>
+                                    <span>
+                                    {review.trackId.artists.map((artist,i) => {
+                                        const length = review.trackId.artists.length;
+                                        return (
+                                            <span key={i}>
+                                                    <Link to={`/artist/${artist.spotifyId}`} className="text-decoration-none">{artist.name}</Link>
+                                                { i<length-1 && <>, </> }
+                                                </span>
+                                        )
+                                    })}
+                                </span>
+                                </>
+                            }
+                            {
+                                review.albumId &&
+                                <>
+                                <span>
+                                    <Link className="me-1 text-decoration-none fw-bold"
+                                          to={`/album/${review.albumId.spotifyId}`}>{review.albumId.name}</Link>
+                                </span>
+                                    <span className="me-1">by</span>
+                                    <span>
+                                    {review.albumId.artists.map((artist,i) => {
+                                        const length = review.albumId.artists.length;
+                                        return (
+                                            <span key={i}>
+                                                        <Link to={`/artist/${artist.spotifyId}`} className="text-decoration-none">{artist.name}</Link>
+                                                { i<length-1 && <>, </> }
+                                                    </span>
+                                        )
+                                    })}
+                                </span>
+                                </>
+                            }
+                            {
+                                review.artistId &&
+                                <>
+                                <span>
+                                    <Link className="me-2 text-decoration-none fw-bold"
+                                          to={`/artist/${review.artistId.spotifyId}`}>{review.artistId.name}</Link>
+                                </span>
+                                </>
                             }
                         </div>
-                        <div>
+                        <div className="text-nowrap">
                             <span>
                                 <span className="text-secondary text-nowrap ms-2">
                                     {displayTime()}
@@ -106,7 +164,7 @@ const Review = ({originalReview,currentUserId}) => {
                                 {
                                     currentUser && review.userId._id===currentUser._id && !editing &&
                                     <span className="ms-2 btn btn-sm btn-secondary"
-                                          onClick={() => startEditingCommentHandler(review.text)}
+                                          onClick={() => startEditingCommentHandler(reviewText)}
                                     >
                                         <FontAwesomeIcon icon="fa-solid fa-pen-to-square"/>
                                     </span>
@@ -132,7 +190,7 @@ const Review = ({originalReview,currentUserId}) => {
                     </div>
                     <div>
                         {
-                            !editing && reviewText!=='' && <>{reviewText}</>
+                            !editing && reviewText!=='' && <span className="fst-italic">"{reviewText}"</span>
                         }
                         {
                             editing &&
@@ -150,10 +208,7 @@ const Review = ({originalReview,currentUserId}) => {
                     </div>
                 </div>
             }
-            {
-
-            }
     </>
     )
 }
-export default Review;
+export default ReviewProfile;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { findSpotifyArtist } from "./hoedown-service";
 import { useSelector } from "react-redux";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Review from "./review";
+import Review from "../review/review";
 import LikeButton from "./like-button-artist";
 import ReviewList from "./review-list";
 

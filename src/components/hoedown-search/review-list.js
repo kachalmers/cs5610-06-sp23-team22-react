@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Review from "./review"
+import Review from "../review/review"
 import * as commentsService from "../../services/comments/comments-service";
 import {useSelector} from "react-redux";
 
