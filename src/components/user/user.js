@@ -23,7 +23,7 @@ const User = ({who,currentUser}) => {
             { !user.deleted &&
             <div className="d-flex justify-content-between align-items-center">
                 <div>
-                    <div className="d-flex align-items-center bg-info">
+                    <div className="d-flex align-items-center">
                         <div className="me-2">
                             <img className="rounded-circle" height={40} src="https://media.istockphoto.com/id/532629379/vector/singing-cowboy-with-guitar.jpg?s=612x612&w=0&k=20&c=GY4MyNDgbwZdhHvPhRJ636EK0HW75PU5mLGw--TOYHc="/>
                         </div>
@@ -41,7 +41,7 @@ const User = ({who,currentUser}) => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-success text-nowrap">
+                <div className="text-nowrap">
                     <span>
                     {
                         currentUser && currentUser._id!==user._id && !user.followedByMe &&
