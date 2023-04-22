@@ -37,7 +37,7 @@ const Review = ({originalReview,currentUserId}) => {
 
     const deleteCommentHandler = async () => {
         await commentsService.deleteComment(review._id);
-        setReview(null);
+        setReview({deleted:true,text:""});
     }
 
     const displayTime = () => {
@@ -75,7 +75,7 @@ const Review = ({originalReview,currentUserId}) => {
 
     return(
         <>
-            { review &&
+            { review && !review.deleted &&
                 <div className="list-group-item">
                     {console.log("REVIEW")}
                     {console.log(review.userId)}
