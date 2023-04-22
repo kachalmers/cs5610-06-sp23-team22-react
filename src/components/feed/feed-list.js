@@ -1,6 +1,6 @@
-import FeedItem from "./feed-item";
 import React, {useEffect, useState} from "react";
 import {findLikesOfUserFollowees} from "../../services/likes/likes-service";
+import Like from "../like/like"
 
 const FeedList = ({currentUser}) => {
     const [feedItems,setFeedItems] = useState([]);
@@ -21,9 +21,8 @@ const FeedList = ({currentUser}) => {
                 {
                     feedItems.map(item => {
                         return (
-                            <FeedItem key={item._id}
-                                      item={item}
-                                      currentUserId={currentUser._id}
+                            <Like key={item._id}
+                                  item={item}
                             />
                         );
                     })

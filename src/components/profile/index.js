@@ -14,12 +14,9 @@ import FollowingTabLabel from "./following-tab-label";
 import {findFollowsByFollowerId} from "../../services/follows/follows-service";
 import Following from "./following";
 import Followers from "./followers";
-/*import { findLikesByUserId } from "../napster/likes-service";
-import {
-    userFollowsUser,
-    findFollowsByFollowerId,
-    findFollowsByFollowedId,
-} from "../../services/follows-service";*/
+import ArtistLikes from "./artist-likes";
+import AlbumLikes from "./album-likes";
+import TrackLikes from "./track-likes";
 
 const Profile = () => {
     const { userId } = useParams();
@@ -37,14 +34,7 @@ const Profile = () => {
             setFollowing(following);
         }
     };
-/*    const fetchFollowers = async () => {
-        const follows = await findFollowsByFollowedId(profile._id);
-        setFollows(follows);
-    };
-    const fetchLikes = async () => {
-        const likes = await findLikesByUserId(profile._id);
-        setLikes(likes);
-    };*/
+
     const fetchProfile = async () => {
         if (userId) {
             const user = await findUserById(userId);
@@ -59,9 +49,6 @@ const Profile = () => {
     };
     const loadScreen = async () => {
         let p = await fetchProfile();
-        //let f = await fetchFollowing();
-/*        await fetchLikes();
-        await fetchFollowers();*/
     };
 
     useEffect(() => {
@@ -152,6 +139,9 @@ const Profile = () => {
         <Routes>
             <Route path={`/following`} element={<Following pid={profile._id} currentUser={currentUser}/>}/>
             <Route path={`/followers`} element={<Followers pid={profile._id} currentUser={currentUser}/>}/>
+            <Route path={`/liked-artists`} element={<ArtistLikes pid={profile._id}/>}/>
+            <Route path={`/liked-albums`} element={<AlbumLikes pid={profile._id}/>}/>
+            <Route path={`/liked-songs`} element={<TrackLikes pid={profile._id}/>}/>
         </Routes>
     </>}</>)
 }

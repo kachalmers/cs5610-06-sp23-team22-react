@@ -34,3 +34,24 @@ export const updateLike = async (likeId,like) => {
     )
     return response.data;
 }
+
+export const findArtistLikesByUserId = async (userId) => {
+    const response = await axios.get(
+        `${API}/users/${userId}/likes/artists`
+    )
+    return response.data;
+}
+
+export const findAlbumLikesByUserId = async (userId) => {
+    const response = await axios.get(
+        `${API}/users/${userId}/likes/albums`
+    )
+    return response.data;
+}
+
+export const findTrackLikesByUserId = async (userId) => {
+    const response = await axios.get(
+        `${API}/users/${userId}/likes/tracks`
+    )
+    return response.data;
+}

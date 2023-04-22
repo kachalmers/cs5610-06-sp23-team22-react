@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as likesService from "../../services/likes/likes-service";
+import {useSelector} from "react-redux";
 
-const FeedItem = ({item,currentUserId}) => {
+const Like = ({item}) => {
+    const { currentUser } = useSelector((state) => state.users);
     const [editing,setEditing]=useState(false);
     const [text,setText] = useState(item.text)
 
@@ -67,9 +69,9 @@ const FeedItem = ({item,currentUserId}) => {
                     <Link to={`/profile/${item.userId._id}`}
                           className="text-decoration-none fw-bold text-black">
                         {
-                            item.userId._id===currentUserId ?
+                            currentUser && item.userId._id===currentUser._id ?
                             <span className="me-1">You</span>
-                            : <span className="me-1">{item.userId.firstName + " " + item.userId.lastName}</span>
+                                                                             : <span className="me-1">{item.userId.firstName + " " + item.userId.lastName}</span>
                         }
                         {
                             item.userId.role === "CRITIC" &&
@@ -146,7 +148,7 @@ const FeedItem = ({item,currentUserId}) => {
                         {displayTime()}
                     </span>
                     {
-                        item.userId._id===currentUserId && !editing &&
+                        currentUser && item.userId._id===currentUser._id && !editing &&
                         <span className="ms-2 btn btn-sm btn-secondary"
                               onClick={() => startEditingItemHandler(item.text)}
                         >
@@ -206,5 +208,5 @@ const FeedItem = ({item,currentUserId}) => {
     )
 }
 
-export default FeedItem;
+export default Like;
 
