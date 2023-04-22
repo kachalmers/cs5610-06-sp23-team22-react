@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {userTogglesFollow} from "../../services/follows/follows-service";
 import {Link} from "react-router-dom";
 import * as commentsService from "../../services/comments/comments-service";
 import {useSelector} from "react-redux";
 
-const Review = ({review,currentUserId}) => {
+const Review = ({originalReview,currentUserId}) => {
     let {currentUser} = useSelector((state) => state.users);
+    const [review,setReview] = useState(originalReview)
     const [reviewText, setReviewText] = useState(review.text);
     const [editing,setEditing]=useState(false);
 
@@ -32,6 +33,11 @@ const Review = ({review,currentUserId}) => {
         console.log(newReview);
         await commentsService.updateComment(review._id, newReview);
         setEditing(false);
+    }
+
+    const deleteCommentHandler = async () => {
+        await commentsService.deleteComment(review._id);
+        setReview(null);
     }
 
     const displayTime = () => {
@@ -63,6 +69,9 @@ const Review = ({review,currentUserId}) => {
         const date = dateFull.substr(0,10);
         return date;
     }
+
+    useEffect(() => {
+    }, [review]);
 
     return(
         <>
@@ -110,6 +119,14 @@ const Review = ({review,currentUserId}) => {
                                         <FontAwesomeIcon icon="fa-solid fa-floppy-disk"/>
                                     </span>
                                 }
+                                {
+                                    currentUser && (review.userId._id===currentUser._id || currentUser.role==="ADMIN") &&
+                                    <span className="ms-2 btn btn-sm btn-danger"
+                                          onClick={() => deleteCommentHandler()}
+                                    >
+                                        <FontAwesomeIcon icon="fa-solid fa-trash"/>
+                                    </span>
+                                }
                             </span>
                         </div>
                     </div>
@@ -132,6 +149,9 @@ const Review = ({review,currentUserId}) => {
                         }
                     </div>
                 </div>
+            }
+            {
+
             }
     </>
     )

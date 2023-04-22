@@ -17,7 +17,8 @@ import {
     faCertificate,
     faPenToSquare,
     faBan,
-    faFloppyDisk
+    faFloppyDisk,
+    faTrash
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
@@ -51,5 +52,6 @@ library.add(
     faCertificate,
     faPenToSquare,
     faBan,
-    faFloppyDisk
+    faFloppyDisk,
+    faTrash
 )

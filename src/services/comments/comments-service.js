@@ -51,3 +51,10 @@ export const updateComment = async (commentId,newComment) => {
     )
     return response.data;
 }
+
+export const deleteComment = async (commentId) => {
+    const response = await axios.delete(
+        `${API}/comments/${commentId}`
+    )
+    return response.data;
+}

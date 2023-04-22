@@ -137,7 +137,7 @@ const ReviewList = ({reviewed_thing}) => {
                 reviews.map(review =>
                                 <Review
                                     key={review._id}
-                                    review={review}
+                                    originalReview={review}
                                 />
                 )
             }
