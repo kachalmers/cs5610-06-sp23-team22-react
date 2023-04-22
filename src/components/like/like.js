@@ -171,16 +171,22 @@ const Like = ({item}) => {
                         {/* Image for track, album, or artist */}
                         <div className="me-2">
                             {
-                                item.trackId &&
+                                item.trackId && item.trackId.imageUrl &&
                                 <img height={70} src={item.trackId.imageUrl}/>
                             }
                             {
-                                item.albumId &&
+                                item.albumId && item.albumId.imageUrl &&
                                 <img height={70} src={item.albumId.imageUrl}/>
                             }
                             {
-                                item.artistId &&
+                                item.artistId && item.artistId.imageUrl &&
                                 <img height={70} src={item.artistId.imageUrl}/>
+                            }
+                            {
+                                ((item.trackId && !item.trackId.imageUrl) ||
+                                (item.albumId && !item.albumId.imageUrl) ||
+                                (item.artistId && !item.artistId.imageUrl)) &&
+                                <img className="border border-light wd-thumbnail-70px" height={70} src="https://static.vecteezy.com/system/resources/previews/004/988/945/original/music-note-with-brown-hat-free-vector.jpg"/>
                             }
                         </div>
                     </div>

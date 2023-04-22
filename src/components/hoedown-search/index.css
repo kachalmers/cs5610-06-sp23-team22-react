@@ -4,6 +4,12 @@
     object-fit: cover;
 }
 
+.wd-thumbnail-70px {
+    width: 70px; /* width of container */
+    height: 70px; /* height of container */
+    object-fit: cover;
+}
+
 .wd-width-150px {
     width: 150px;
 }
