@@ -10,7 +10,11 @@ const Feed = () => {
             {
                 currentUser && currentUser._id ?
                 <FeedList currentUser={currentUser}/>
-                : <div className="fs-3">Please log in to view your feed!</div>
+                :
+                <div className="text-center">
+                    <h3 className="fw-bold">Please log in to view your feed!</h3>
+                    <h4>You may search Spotify and explore users' profiles without logging in.</h4>
+                </div>
             }
         </>
     )

@@ -8,6 +8,12 @@ export const findAllUsers = async () => {
     return response.data;
 };
 
+export const findAllUsersByText = async (text) => {
+    const response = await api.get(`${USERS_API_URL}/fields/${text}`);
+    console.log(response.data)
+    return response.data;
+};
+
 export const findUserById = async (id) => {
     const response = await axios.get(`${USERS_API_URL}/${id}`);
     return response.data;

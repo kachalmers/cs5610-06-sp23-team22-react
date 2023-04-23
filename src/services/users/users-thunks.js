@@ -6,6 +6,11 @@ export const findAllUsersThunk = createAsyncThunk("users/findAll", async () => {
     return users;
 });
 
+export const findAllUsersByTextThunk = createAsyncThunk("users/findAllByText", async (text) => {
+    const users = await userService.findAllUsersByText(text);
+    return users;
+});
+
 export const findUserByIdThunk = createAsyncThunk(
     "users/findById",
     async (id) => {

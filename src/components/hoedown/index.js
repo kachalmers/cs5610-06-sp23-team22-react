@@ -43,6 +43,7 @@ function Hoedown() {
                                     <Route path="profile/:userId/*" element={<Profile/>}/>
                                     <Route path="edit-profile" element={<EditProfile/>}/>
                                     <Route path="find-friends" element={<FindFriends/>}/>
+                                    <Route path="find-friends/:searchTerm" element={<FindFriends/>}/>
                                     <Route path="search" element={<HoedownSearch/>}/>
                                     <Route path="search/:searchTerm" element={<HoedownSearch/>}/>
                                     <Route path="track/:spotifyID" element={<TrackDetailsScreen/>}/>

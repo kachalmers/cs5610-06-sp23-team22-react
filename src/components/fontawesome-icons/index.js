@@ -19,7 +19,8 @@ import {
     faBan,
     faFloppyDisk,
     faTrash,
-    faComment
+    faComment,
+    faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faUser as farUser,
@@ -55,5 +56,6 @@ library.add(
     faBan,
     faFloppyDisk,
     faTrash,
-    faComment
+    faComment,
+    faMagnifyingGlass
 )

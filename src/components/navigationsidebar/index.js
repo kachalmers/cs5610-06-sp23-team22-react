@@ -4,7 +4,7 @@ import {useLocation,useNavigate} from "react-router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import {logoutThunk} from "../../services/users/users-thunks";
-
+import "./index.css";
 
 const NavigationSidebar = () => {
     const { currentUser } = useSelector((state) => state.users);
@@ -24,19 +24,22 @@ const NavigationSidebar = () => {
             label: 'Search',
             link: '/search',
             activePaths: ['search'],
-            iconClassName: "fa-solid fa-music"
+            iconClassName: "fa-solid fa-music",
+            magnifyingGlass: true
         },
         {
-            label: 'Profile',
+            label: 'My Profile',
             link: '/profile',
             activePaths: ['profile','edit-profile'],
-            iconClassName: "fa-solid fa-user"
+            iconClassName: "fa-solid fa-user",
+            requiresLogin:true
         },
         {
             label: 'Find friends',
             link: '/find-friends',
             activePaths: ['find-friends'],
-            iconClassName: "fa-solid fa-users"
+            iconClassName: "fa-regular fa-user",
+            magnifyingGlass: true
         }
     ]
     return (
@@ -50,6 +53,7 @@ const NavigationSidebar = () => {
             <div className="list-group">
                 {
                     screenChoices.map((screenChoice,index) =>
+                        <>{ (!screenChoice.requiresLogin || (screenChoice.requiresLogin && currentUser)) &&
                         <Link   to={screenChoice.link}
                                 className={`list-group-item ${screenChoice.activePaths.includes(active)?'active':''}`}
                                 key={index}
@@ -57,13 +61,20 @@ const NavigationSidebar = () => {
                             <div className="row align-items-center">
                                 {
                                     screenChoice.iconClassName !== '' &&
-                                    <div className="d-flex col col-lg-3 justify-content-center">
+                                    <div className="d-flex col col-lg-3 justify-content-center align-items-center">
                                         <FontAwesomeIcon icon={screenChoice.iconClassName}/>
+                                        {
+                                            screenChoice.magnifyingGlass &&
+                                            <span className="wd-magnifying-glass">
+                                                <FontAwesomeIcon icon="fa-solid fa-magnifying-glass"/>
+                                            </span>
+                                        }
                                     </div>
                                 }
                                 <div className="d-none d-lg-block col">{screenChoice.label}</div>
                             </div>
                         </Link>
+                        }</>
                     )
                 }
             </div>

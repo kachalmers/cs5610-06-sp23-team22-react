@@ -1,6 +1,7 @@
 const { createSlice } = require("@reduxjs/toolkit");
 const {
     findAllUsersThunk,
+    findAllUsersByTextThunk,
     findUserByIdThunk,
     createUserThunk,
     deleteUserThunk,
@@ -44,6 +45,18 @@ const usersSlice = createSlice({
            state.loading = false;
            state.error = action.error.message;
        },
+        [findAllUsersByTextThunk.pending]: (state, action) => {
+            state.loading = true;
+            state.users = [];
+        },
+        [findAllUsersByTextThunk.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.users = action.payload;
+        },
+        [findAllUsersByTextThunk.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+        },
        [findUserByIdThunk.pending]: (state, action) => {
            state.loading = true;
        },
