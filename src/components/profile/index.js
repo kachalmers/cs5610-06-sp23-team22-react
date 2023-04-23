@@ -73,19 +73,12 @@ const Profile = () => {
                         src="https://media.istockphoto.com/id/532629379/vector/singing-cowboy-with-guitar.jpg?s=612x612&w=0&k=20&c=GY4MyNDgbwZdhHvPhRJ636EK0HW75PU5mLGw--TOYHc="/>
             </div>
             <div>
-
                 {
                     currentUser && profile._id === currentUser._id &&
                     <Link   to="/edit-profile"
                             className="mt-2 btn btn-large btn-light border-secondary fw-bold rounded-pill float-end">
                     Edit profile
                     </Link>
-                }
-                {
-                    currentUser && currentUser._id !== profile._id &&
-                    <button className="mt-2 btn btn-large btn-primary fw-bold rounded-pill float-end">
-                    Follow
-                    </button>
                 }
             </div>
         </div>
